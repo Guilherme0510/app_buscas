@@ -20,6 +20,7 @@ export const Login: React.FC = () => {
 
   return (
     <div className="login-container">
+      <div className="login-box">
       <h2>Login</h2>
       <form onSubmit={handleLogin} className="login-form">
         <div className="form-group">
@@ -45,6 +46,7 @@ export const Login: React.FC = () => {
         {error && <p className="error-message">{error}</p>}
         <button type="submit" className="login-button">Entrar</button>
       </form>
+      </div>
     </div>
   );
 };

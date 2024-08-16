@@ -1,22 +1,34 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Navbar, Nav, Container } from 'react-bootstrap';
+import './navbar.css';
 
 interface NavLink {
     label: string;
     href: string;
 }
 
-interface NavbarProps{
+interface NavbarProps {
     title: string;
-    links: NavLink[]
+    links: NavLink[];
 }
 
 export const LinksNav: React.FC<NavbarProps> = ({ title, links }) => {
-    return(
-        <Navbar bg="dark" variant="dark" expand="lg" >
+
+    const [scrolled, setScrolled] = useState(false);
+
+    const handleScroll = () => {
+        setScrolled(window.scrollY > 50);
+    };
+
+    useEffect(() => {
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+    return (
+        <Navbar className={`navbar-custom fixed-top ${scrolled ? 'scrolled' : ''}`} expand="lg">
             <Container>
                 <Navbar.Brand href="/home">{title}</Navbar.Brand>
-                <Navbar.Toggle aria-controls="basic-navbar-nav"/>
+                <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="ms-auto">
                         {links.map((link, index) => (
@@ -28,5 +40,5 @@ export const LinksNav: React.FC<NavbarProps> = ({ title, links }) => {
                 </Navbar.Collapse>
             </Container>
         </Navbar>
-    )
-}
+    );
+};

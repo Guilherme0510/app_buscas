@@ -1,0 +1,32 @@
+/* navbar.css */
+.navbar-custom {
+    transition: background-color 0.3s ease; 
+    box-shadow: 3px 3px 15px rgba(0, 0, 0, .5);
+}
+
+.navbar-custom .navbar-brand {
+    color: #f8f9fa; 
+    font-size: 1.5rem; 
+    font-weight: bold;
+}
+
+.navbar-custom .nav-link {
+    color: #f8f9fa; 
+    font-size: 1.1rem; 
+    margin: 0 10px; 
+}
+
+.navbar-custom .nav-link:hover {
+    color: #007bff; 
+}
+
+.navbar-custom .navbar-toggler {
+    border-color: #ffffff; 
+}
+.navbar-custom.scrolled {
+    background-color: #222;
+}
+
+.navbar-custom.scrolled .navbar-toggler{
+    background-color: #fff;
+}

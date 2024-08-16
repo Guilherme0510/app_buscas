@@ -1,7 +1,51 @@
 .banner-section {
     position: relative;
-    height: 70vh;
-    background-color: #f2f2f2
+    height: 65vh;
+}
+
+.banner-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 245%;
+    background: rgba(0, 0, 0, 0.35);
+    z-index: -1;
+}
+
+.banner-section img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 245%;
+    object-fit: cover;
+    object-position: top;
+    z-index: -2;
+}
+
+.banner-content {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    height: 100%;
+}
+
+.info-banner {
+    text-align: center;
+}
+
+.info-banner h1{
+    font-size: 55px;
+    font-weight: 650;
+}
+
+.info-banner p{
+    font-size: 20px;
+    font-weight: 600;
 }
 
 .divider-box {
@@ -9,9 +53,17 @@
     bottom: -25px;
     left: 50%;
     transform: translateX(-50%);
-    width: 600px;
-    height: 150px;
-    background-color: rgb(151, 140, 140);
+    width: 200px;
+    height: 200px;
     z-index: 2;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon-location {
+    font-size: 90px;
+    color: #fff;
+    filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.6));
 }

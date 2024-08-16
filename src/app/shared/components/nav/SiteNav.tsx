@@ -1,13 +1,16 @@
 import React from 'react';
 import { LinksNav } from './components/LinksNav';
+import '../nav/components/navbar.css'
+
 
 export const SiteNav: React.FC = () => {
   const links = [
-    { label: 'Inicio', href: '/home' },
-    { label: 'Sobre', href: '/about' },
-    { label: 'Serviços', href: '/services' },
-    { label: 'Contatos', href: '/contact' },
+    { label: 'Login', href: '/login' },
+    { label: 'Anuncie já!', href: 'https://www.whatsapp.com' },
+    
   ];
+
+  
 
   return (
     <div>

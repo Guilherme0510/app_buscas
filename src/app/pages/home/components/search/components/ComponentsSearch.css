@@ -1,6 +1,10 @@
 .city{
     height: 20vh;
     background-color: #0056b3;
+    border-radius: 20px 20px 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .search-form {
@@ -12,9 +16,18 @@
 .search-input {
     flex: 1;
     margin-right: 1rem;
+    width: 450px;
 }
 
 .search-button {
     display: flex;
     align-items: center;
+}
+
+@media screen and (max-width: 992px) {
+    .search-input{
+        width: auto;
+        display: flex;
+        flex-direction: column;
+    }
 }

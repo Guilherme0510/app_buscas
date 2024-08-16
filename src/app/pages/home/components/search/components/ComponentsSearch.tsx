@@ -6,15 +6,15 @@ import './ComponentsSearch.css';
 
 export const ComponentsSearch: React.FC = () => {
     return (
-        <Container className="city pt-5">
+        <Container className="city">
             <Row className="justify-content-center">
                 <Col md={8}>
                     <Form className="search-form">
                         <Form.Group controlId="search1" className="search-input">
-                            <Form.Control type="text" placeholder="Digite a primeira pesquisa..." />
+                            <Form.Control type="text" placeholder="O que Procura?" />
                         </Form.Group>
                         <Form.Group controlId="search2" className="search-input">
-                            <Form.Control type="text" placeholder="Digite a segunda pesquisa..." />
+                            <Form.Control type="text" placeholder="Em qual localização?" />
                         </Form.Group>
                         <Button variant="primary" type="submit" className="search-button">
                             <FontAwesomeIcon icon={faSearch} />
