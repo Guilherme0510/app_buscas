@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import { Home, Login } from "../pages";
+import { Home, Login, Dash } from "../pages";
 
 export const LocalRoutes = () => {
   return (
@@ -7,6 +7,7 @@ export const LocalRoutes = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />}/>
+        <Route path="/pesquisas" element={<Dash />}/>
         <Route path="*" element={<Navigate to="/"/>} />
       </Routes>
     </BrowserRouter>
