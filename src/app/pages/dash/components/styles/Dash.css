@@ -1,22 +1,18 @@
 .dash-container {
-    padding: 20px;
-}
-
-.results-container {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+    background: linear-gradient(146.75deg, #1297c8 60%, #ace0de 50%) ;
 }
 
 .search-result {
     display: flex;
     align-items: flex-start;
-    gap: 20px;
     border: 1px solid #ddd;
+    width: 100%;
     padding: 15px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     background-color: #fff;
+    height: 200px;
+    margin-block: 10px;
 }
 
 .search-result .text-content {
@@ -24,9 +20,102 @@
 }
 
 .search-result iframe {
-    width: 300px;
-    height: 200px;
+    width: 200px;
+    height: 120px;
     border: 1px solid #ddd;
     border-radius: 8px;
     flex-shrink: 0;
+}
+
+
+.header-search{
+    background-image: url(../../../../assets/images/header-search.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 35vh;
+    box-shadow: inset -10px -10px 15px rgba(0, 0, 0, 0.2);
+}
+
+.title-dash{
+    padding-top: 120px;
+    color: #fff;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.title-dash h1{
+    font-weight: 600;
+}
+
+.title-dash p{
+    font-size: 19px;
+    font-weight: 550;
+}
+
+.overlay {
+    position: absolute; 
+    left: 0;
+    width: 100%;
+    height: 35vh;
+    background-color: rgba(0, 0, 0, 0.5); 
+    z-index: 1000; 
+}
+
+.search{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 50px;
+}
+
+.search input{
+    margin-inline: 20px;
+    width: 300px;
+}
+
+.search-result img{
+    width: 32px;
+    margin-top: 10px;
+}
+
+.map-container{
+    display: flex;
+  flex-direction: column;  
+  align-items: flex-end;
+}
+
+.results-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+@media screen and (max-width: 992px) {
+    .search{
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .search input{
+        margin-inline: 5px;
+        display: flex;
+        width: auto;
+
+    }
+    .search-result iframe{
+        width: 200px;
+        height: 100px;
+    }
+    .search-result{
+        display: flex;
+        flex-direction: column;
+        height: auto;
+    }
+
+    .map-container{
+        align-items: flex-start;
+    }
 }

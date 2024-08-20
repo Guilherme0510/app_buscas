@@ -1,3 +1,5 @@
+
+
 .login-container {
     display: flex;
     justify-content: center;
@@ -12,20 +14,22 @@
     background-repeat: no-repeat;
 }
 
-.login-box{
+.login-box {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background-color: #ffffff;
+    background-color: #00000080;
     border-radius: 20px;
-    height: 500px;
-    width: 400px;
+    height: 470px;
+    width: 500px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
 }
 
 h2 {
     margin-bottom: 20px;
-    color: #343a40;
+    color: #ffffff;
 }
 
 .form-group {
@@ -39,11 +43,13 @@ label {
     display: block;
     margin-bottom: 5px;
     font-weight: bold;
-    color: #495057;
+    color: #fff;
 }
 
 input {
-    width: 300px;
+    text-align: center;
+    width: 400px; 
+    max-width: 400px; 
     padding: 10px;
     border: 1px solid #ced4da;
     border-radius: 5px;
@@ -68,4 +74,18 @@ input {
 .error-message {
     color: red;
     margin-top: 10px;
+}
+
+@media screen and (max-width: 992px) {
+    .login-box {
+        width: 90%; /* Ajusta a largura da caixa em dispositivos menores */
+        max-width: 400px; /* Define um tamanho máximo para manter a responsividade */
+        height: auto; /* Ajusta a altura automática para o conteúdo */
+    background-color: #00000090;
+
+    } 
+
+    .login-box input{
+        width: 300px;
+    }
 }

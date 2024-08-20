@@ -1,70 +1,85 @@
-import React from "react";
+import React, { useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import './ComponentsStates.css';
+import { 
+  acre, amapa, amazonas, para, rondonia, roraima, tocantins,
+  alagoas, bahia, ceara, maranhao, paraiba, pernambuco, piaui,
+  rioGrandeDoNorte, sergipe, distritoFederal, goias, matoGrosso,
+  matoGrossoDoSul, espiritoSanto, minasGerais, rioDeJaneiro,
+  saoPaulo, parana, rioGrandeDoSul, santaCatarina 
+} from '../components/Bandeiras/all_bandeiras'
 
 export const ComponentsStates: React.FC = () => {
-  return  (
+  const [selectedRegion, setSelectedRegion] = useState<string>("Norte");
+
+  return (
     <Container className="estados-container">
-    <Row className="justify-content-center">
-      <Col md={4}>
-        <h2 className="region-title">Norte</h2>
-        <ul className="state-list">
-          <li><a href="/">Acre</a></li>
-          <li><a href="/">Amapá</a></li>
-          <li><a href="/">Amazonas</a></li>
-          <li><a href="/">Pará</a></li>
-          <li><a href="/">Rondônia</a></li>
-          <li><a href="/">Roraima</a></li>
-          <li><a href="/">Tocantins</a></li>
-        </ul>
-      </Col>
+      <Row className="justify-content-center">
+        <Col md={10}>
+          <h2 className="region-title">Selecione uma Região</h2>
+          <select
+            className="region-select form-select"
+            value={selectedRegion}
+            onChange={(e) => setSelectedRegion(e.target.value)}
+          >
+            <option value="Norte">Norte</option>
+            <option value="Nordeste">Nordeste</option>
+            <option value="Centro-Oeste">Centro-Oeste</option>
+            <option value="Sudeste">Sudeste</option>
+            <option value="Sul">Sul</option>
+          </select>
 
-      <Col md={4}>
-        <h2 className="region-title">Nordeste</h2>
-        <ul className="state-list">
-          <li><a href="/">Alagoas</a></li>
-          <li><a href="/">Bahia</a></li>
-          <li><a href="/">Ceará</a></li>
-          <li><a href="/">Maranhão</a></li>
-          <li><a href="/">Paraíba</a></li>
-          <li><a href="/">Pernambuco</a></li>
-          <li><a href="/">Piauí</a></li>
-          <li><a href="/">Rio Grande do Norte</a></li>
-          <li><a href="/">Sergipe</a></li>
-        </ul>
-      </Col>
-
-      <Col md={4}>
-        <h2 className="region-title">Centro-Oeste</h2>
-        <ul className="state-list">
-          <li><a href="/">Distrito Federal</a></li>
-          <li><a href="/">Goiás</a></li>
-          <li><a href="/">Mato Grosso</a></li>
-          <li><a href="/">Mato Grosso do Sul</a></li>
-        </ul>
-      </Col>
-    </Row>
-
-    <Row className="justify-content-center">
-      <Col md={4}>
-        <h2 className="region-title">Sudeste</h2>
-        <ul className="state-list">
-          <li><a href="/">Espírito Santo</a></li>
-          <li><a href="/">Minas Gerais</a></li>
-          <li><a href="/">Rio de Janeiro</a></li>
-          <li><a href="/">São Paulo</a></li>
-        </ul>
-      </Col>
-
-      <Col md={4}>
-        <h2 className="region-title">Sul</h2>
-        <ul className="state-list">
-          <li><a href="/">Paraná</a></li>
-          <li><a href="/">Rio Grande do Sul</a></li>
-          <li><a href="/">Santa Catarina</a></li>
-        </ul>
-      </Col>
-    </Row>
-  </Container>
+          <ul className="state-list">
+            {selectedRegion === "Norte" && (
+              <>
+                <li><a href="/"><img src={acre} alt="" /></a>Acre</li>
+                <li><a href="/"><img src={amapa} alt="" /></a>Amapá</li>
+                <li><a href="/"><img src={amazonas} alt="" /></a>Amazonas</li>
+                <li><a href="/"><img src={para} alt="" /></a>Pará</li>
+                <li><a href="/"><img src={rondonia} alt="" /></a>Rondônia</li>
+                <li><a href="/"><img src={roraima} alt="" /></a>Roraima</li>
+                <li><a href="/"><img src={tocantins} alt="" /></a>Tocantins</li>
+              </>
+            )}
+            {selectedRegion === "Nordeste" && (
+              <>
+                <li><a href="/"><img src={alagoas} alt="" /></a>Alagoas</li>
+                <li><a href="/"><img src={bahia} alt="" /></a>Bahia</li>
+                <li><a href="/"><img src={ceara} alt="" /></a>Ceará</li>
+                <li><a href="/"><img src={maranhao} alt="" /></a>Maranhão</li>
+                <li><a href="/"><img src={paraiba} alt="" /></a>Paraíba</li>
+                <li><a href="/"><img src={pernambuco} alt="" /></a>Pernambuco</li>
+                <li><a href="/"><img src={piaui} alt="" /></a>Piauí</li>
+                <li><a href="/"><img src={rioGrandeDoNorte} alt="" /></a>Rio Grande do Norte</li>
+                <li><a href="/"><img src={sergipe} alt="" /></a>Sergipe</li>
+              </>
+            )}
+            {selectedRegion === "Centro-Oeste" && (
+              <>
+                <li><a href="/"><img src={distritoFederal} alt="" /></a>Distrito Federal</li>
+                <li><a href="/"><img src={goias} alt="" /></a>Goiás</li>
+                <li><a href="/"><img src={matoGrosso} alt="" /></a>Mato Grosso</li>
+                <li><a href="/"><img src={matoGrossoDoSul} alt="" /></a>Mato Grosso do Sul</li>
+              </>
+            )}
+            {selectedRegion === "Sudeste" && (
+              <>
+                <li><a href="/"><img src={espiritoSanto} alt="" /></a>Espírito Santo</li>
+                <li><a href="/"><img src={minasGerais} alt="" /></a>Minas Gerais</li>
+                <li><a href="/"><img src={rioDeJaneiro} alt="" /></a>Rio de Janeiro</li>
+                <li><a href="/"><img src={saoPaulo} alt="" /></a>São Paulo</li>
+              </>
+            )}
+            {selectedRegion === "Sul" && (
+              <>
+                <li><a href="/"><img src={parana} alt="" /></a>Paraná</li>
+                <li><a href="/"><img src={rioGrandeDoSul} alt="" /></a>Rio Grande do Sul</li>
+                <li><a href="/"><img src={santaCatarina} alt="" /></a>Santa Catarina</li>
+              </>
+            )}
+          </ul>
+        </Col>
+      </Row>
+    </Container>
   );
 };

@@ -19,6 +19,10 @@
     width: 450px;
 }
 
+.search-input #search1{
+    width: 310px;
+}
+
 .search-button {
     display: flex;
     align-items: center;
