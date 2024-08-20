@@ -1,8 +1,7 @@
 import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-router-dom";
-import { Home, Login, Dash } from "../pages";
+import { Home, Login, Dash, Perfil } from "../pages";
 import { SiteFooter, SiteNav } from "../shared/components";
 
-// Componente para condicionalmente renderizar a navbar
 const ConditionalNav: React.FC = () => {
   const location = useLocation();
 
@@ -13,7 +12,6 @@ const ConditionalNav: React.FC = () => {
   return <SiteNav />;
 };
 
-// Componente para condicionalmente renderizar o footer
 const ConditionalFooter: React.FC = () => {
   const location = useLocation();
 
@@ -32,6 +30,7 @@ export const LocalRoutes = () => {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/pesquisas" element={<Dash />} />
+        <Route path="/perfil" element={<Perfil />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
       <ConditionalFooter />
