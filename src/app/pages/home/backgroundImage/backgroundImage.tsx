@@ -1,5 +1,5 @@
 import './BackgroundImage.css';
-import img_body from '../../../assets/images/header-search.jpg'
+import img_body from '../../../assets/images/header-search.avif'
 
 const BackgroundImage = () => (
   <div className="background-image">

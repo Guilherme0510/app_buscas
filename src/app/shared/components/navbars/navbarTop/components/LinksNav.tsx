@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Navbar, Nav, Container } from 'react-bootstrap';
-import './navbar.css';
 
 interface NavLink {
     label: string;

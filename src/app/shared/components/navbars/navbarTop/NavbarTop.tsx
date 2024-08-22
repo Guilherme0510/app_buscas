@@ -1,6 +1,6 @@
 import React from 'react';
 import { LinksNav } from './components/LinksNav';
-import '../nav/components/navbar.css'
+import './components/navbarTop.css'
 
 
 export const SiteNav: React.FC = () => {
@@ -9,8 +9,6 @@ export const SiteNav: React.FC = () => {
     { label: 'Anuncie já!', href: 'https://www.whatsapp.com' },
     
   ];
-
-  
 
   return (
     <div>
