@@ -1,6 +1,5 @@
 /* navbar.css */
 .navbar-custom {
-    transition: background-color 0.3s ease; 
     box-shadow: 3px 3px 15px rgba(0, 0, 0, .5);
 }
 
@@ -16,9 +15,6 @@
     margin: 0 10px; 
 }
 
-.navbar-custom .nav-link:hover {
-    color: #007bff; 
-}
 
 .navbar-custom .navbar-toggler {
     border-color: #ffffff; 

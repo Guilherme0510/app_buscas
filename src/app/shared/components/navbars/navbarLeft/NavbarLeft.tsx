@@ -1,4 +1,4 @@
-import { faBars, faHome, faChartLine, faTachometerAlt, faBullhorn, faUsers, faMoneyBillWave, faHandHoldingUsd, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faHome, faTimes, faUser, faListAlt, faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -31,45 +31,31 @@ export const NavbarLeft: React.FC = () => {
                     </div>
                     <ul className="nav flex-column">
                         <li className="nav-item">
-                            <Link className="nav-link" to="/">
-                                <FontAwesomeIcon icon={faHome} /> Home
+                            <Link className="nav-link nav-link-left" to="/">
+                                <FontAwesomeIcon icon={faHome}  className = "nav-icon" /> Home
                             </Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" to="/vendas">
-                                <FontAwesomeIcon icon={faChartLine} /> Vendas
+                            <Link className="nav-link nav-link-left" to="/vendas">
+                                <FontAwesomeIcon icon={faUser} className = "nav-icon" /> Perfil
                             </Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" to="/monitoria">
-                                <FontAwesomeIcon icon={faTachometerAlt} /> Monitoria
+                            <Link className="nav-link nav-link-left" to="/monitoria">
+                                <FontAwesomeIcon icon={faListAlt} className = "nav-icon" /> Lista Cliente
                             </Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" to="/marketing">
-                                <FontAwesomeIcon icon={faBullhorn} /> Marketing
+                            <Link className="nav-link nav-link-left" to="/marketing">
+                                <FontAwesomeIcon icon={faUserPlus} className = "nav-icon" /> Adicionar Cliente
                             </Link>
                         </li>
-                        <li className="nav-item">
-                            <Link className="nav-link" to="/gestao">
-                                <FontAwesomeIcon icon={faUsers} /> Gestão
-                            </Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link className="nav-link" to="/financeiro">
-                                <FontAwesomeIcon icon={faMoneyBillWave} /> Financeiro
-                            </Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link className="nav-link" to="/cobranca">
-                                <FontAwesomeIcon icon={faHandHoldingUsd} /> Cobrança
-                            </Link>
-                        </li>
+                        
                     </ul>
                 </div>
-                {/* <div className='nav-contato'>
+                <div className='nav-contato'>
                     <button>Contato</button>
-                </div> */}
+                </div>
             </nav>
         </div>
     );
