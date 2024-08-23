@@ -14,7 +14,6 @@ export const SearchBar: React.FC<SearchBarProps> = ({ searchTerm, onSearchChange
     <>
       <div className="header-list">
         <h1>Lista de Clientes</h1>
-        <hr />
       </div>
       <div className="pesquisa">
         <select name="" id="" className="form-select select-operador">
@@ -36,7 +35,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({ searchTerm, onSearchChange
           <FontAwesomeIcon icon={faSearch} />
         </button>
 
-        <label htmlFor="sortBy" className="label_sortby">Ordenar por:</label>
+        <label htmlFor="sortBy" className="label_sortby text-white">Ordenar por:</label>
         <select name="sortBy" id="sortBy" className="sortby form-select">
           <option className="opt-sortby" value="alphabetical">Selecione</option>
           <option className="opt-sortby" value="alphabetical">Ordem Alfabética</option>

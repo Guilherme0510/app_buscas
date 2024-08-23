@@ -22,7 +22,7 @@ export const Login: React.FC = () => {
   };
 
   if (redirect) {
-    return <Navigate to="/perfil" />;
+    return <Navigate to="/lista" />;
   }
 
   return (

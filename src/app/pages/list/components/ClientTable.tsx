@@ -105,7 +105,7 @@ export const ClientTable: React.FC<ClientTableProps> = ({
               >
                 {client.cnpj}
               </td>
-              <td
+              <td 
                 style={{
                   backgroundColor: selectedRows.has(client.id) ? "#5c5c5c" : "",
                   color: selectedRows.has(client.id) ? "#fff" : "",
@@ -113,20 +113,20 @@ export const ClientTable: React.FC<ClientTableProps> = ({
               >
                 {client.operador}
               </td>
-              <td
+              <td className="bg-secondary"
                 style={{
                   backgroundColor: selectedRows.has(client.id) ? "#5c5c5c" : "",
                   color: selectedRows.has(client.id) ? "#fff" : "",
                 }}
               >
                 <button
-                  className="btn"
+                  className="btn btn-edit text-white"
                   style={{ color: selectedRows.has(client.id) ? "#fff" : "" }}
                 >
                   <FontAwesomeIcon icon={faEdit} />
                 </button>
                 <button
-                  className="btn"
+                  className="btn btn-delete text-white border"
                   style={{ color: selectedRows.has(client.id) ? "#fff" : "" }}
                 >
                   <FontAwesomeIcon icon={faTrashAlt} />

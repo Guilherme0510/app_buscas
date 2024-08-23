@@ -57,7 +57,7 @@ export const Add: React.FC = () => {
                         )}
                         {mapVisible && (
                             <>
-                                <div className="form-group">
+                                <div className="form-group form-group-url col-md-12">
                                     <label htmlFor="map-url">URL do Google Maps</label>
                                     <input onChange={handleMapUrlChange} type="text" id="map-url" className="form-control" placeholder="Cole o link do Google Maps aqui" required />
                                 </div>

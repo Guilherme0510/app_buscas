@@ -7,6 +7,15 @@ import './components/list.css';
 const initialClientsData = [
   { id: 1, cnpj: "12.345.678/0001-99", name: "Cliente A", operador: "Vitor" },
   { id: 2, cnpj: "98.765.432/0001-00", name: "Cliente B", operador: "Guilherme" },
+  { id: 1, cnpj: "12.345.678/0001-99", name: "Cliente A", operador: "Vitor" },
+  { id: 2, cnpj: "98.765.432/0001-00", name: "Cliente B", operador: "Guilherme" },
+  { id: 1, cnpj: "12.345.678/0001-99", name: "Cliente A", operador: "Vitor" },
+  { id: 2, cnpj: "98.765.432/0001-00", name: "Cliente B", operador: "Guilherme" },
+  { id: 1, cnpj: "12.345.678/0001-99", name: "Cliente A", operador: "Vitor" },
+  { id: 2, cnpj: "98.765.432/0001-00", name: "Cliente B", operador: "Guilherme" },
+  { id: 2, cnpj: "98.765.432/0001-00", name: "Cliente B", operador: "Guilherme" },
+  { id: 1, cnpj: "12.345.678/0001-99", name: "Cliente A", operador: "Vitor" },
+  { id: 2, cnpj: "98.765.432/0001-00", name: "Cliente B", operador: "Guilherme" },
 
 ];
 

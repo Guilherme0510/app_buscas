@@ -1,7 +1,6 @@
 .banner-add{
-    background: linear-gradient(146.75deg, #1297c8 60%, #ace0de 50%) ;
-    height: max-content;
-    padding: 20px;
+    background: linear-gradient(145deg, #1297c8 55%, #ace0de 55%) ;
+height: 101vh;    padding: 20px;
     justify-content: center;
     align-items: center;
     align-content: center;
@@ -30,12 +29,15 @@
 }
 
 .form-group {
-    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     animation: slideInUp 0.5s ease-in-out;
+    padding: 5px 12px;
 }
 
 .form-group label {
-    margin-bottom: 5px;
     color: #f0f0f0;
 }
 
@@ -105,4 +107,8 @@
         transform: translateY(0);
         opacity: 1;
     }
+}
+
+@media screen and (max-width: 992px) {
+    .banner-add{}
 }
