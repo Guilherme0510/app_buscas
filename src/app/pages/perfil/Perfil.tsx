@@ -1,16 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./perfil.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import { faArrowLeft, faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
+import { useAuth } from "../../context/AuthContext";
+import { db } from "../../firebaseConfig";
+import { doc, getDoc, setDoc } from "firebase/firestore";
 
 interface PerfilData {
   nome: string;
   email: string;
-  empresa: string;
-  cargo: string;
   avatar: string;
-  opcaoSelecionada: string;
 }
 
 const avatarOptions = [
@@ -18,62 +18,62 @@ const avatarOptions = [
 ];
 
 export const Perfil: React.FC = () => {
-  const [isEditing, setIsEditing] = useState(false);
   const [perfilData, setPerfilData] = useState<PerfilData>({
-    nome: "Vitor Marques Silva",
-    email: "vitor.marques@example.com",
-    empresa: "G Maps",
-    cargo: "Desenvolvedor",
+    nome: "",
+    email: "",
     avatar: avatarOptions[0],
-    opcaoSelecionada: '',
   });
 
   const navigate = useNavigate();
+  const { user, logout } = useAuth();
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    const { name, value } = e.target;
-    setPerfilData(prevState => ({
-      ...prevState,
-      [name]: value
-    }));
-  };
+  useEffect(() => {
+    if (user) {
+      const email = user.email || "";
+      const nome = email.split("@")[0];
 
-  const handleAvatarChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files[0]) {
-      const reader = new FileReader();
-      reader.onload = () => {
-        setPerfilData(prevState => ({
-          ...prevState,
-          avatar: reader.result as string
-        }));
+      const loadPerfilData = async () => {
+        const docRef = doc(db, "usuarios", user.uid);
+        const docSnap = await getDoc(docRef);
+
+        if (docSnap.exists()) {
+          setPerfilData({
+            nome: nome,
+            email: email,
+            avatar: docSnap.data()?.avatar || avatarOptions[0],
+          });
+        } else {
+          await setDoc(docRef, {
+            nome: nome,
+            email: email,
+            avatar: avatarOptions[0],
+          });
+          setPerfilData({
+            nome: nome,
+            email: email,
+            avatar: avatarOptions[0],
+          });
+        }
       };
-      reader.readAsDataURL(e.target.files[0]);
+
+      loadPerfilData();
+    }
+  }, [user]);
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+      navigate("/login");
+    } catch (error) {
+      console.error("Falha ao deslogar:", error);
     }
   };
 
-  const toggleEdit = () => {
-    setIsEditing(!isEditing);
-  };
-
-  const handleSave = () => {
-    toggleEdit();
-  };
-
-  const options = [
-    { value: '', label: 'Selecione Aqui', disabled: true }, // Desabilitado inicialmente
-    { value: 'cobranca', label: 'Cobrança', disabled: false },
-    { value: 'desenvolvedor', label: 'Desenvolvedor', disabled: false },
-    { value: 'estagiario', label: 'Estagiário', disabled: false },
-    { value: 'financeiro', label: 'Financeiro', disabled: false },
-    { value: 'gestao', label: 'Gestão', disabled: false },
-    { value: 'marketing', label: 'Marketing', disabled: false },
-    { value: 'operador', label: 'Operador', disabled: false },
-    { value: 'backoffice', label: 'Back Office', disabled: false },
-  ];
-
   return (
     <div className="perfil-container">
-      <button className="back-button" onClick={() => navigate(-1)}><FontAwesomeIcon icon={faArrowLeft}/> </button>
+      <button className="back-button" onClick={() => navigate(-1)}>
+        <FontAwesomeIcon icon={faArrowLeft} />
+      </button>
       <div className="perfil-card">
         <div className="perfil-header">
           <div className="perfil-avatar-wrapper">
@@ -82,79 +82,18 @@ export const Perfil: React.FC = () => {
               alt="Profile"
               className="perfil-avatar"
             />
-            {isEditing && (
-              <input
-                type="file"
-                accept="image/*"
-                onChange={handleAvatarChange}
-                className="perfil-avatar-input"
-              />
-            )}
           </div>
-          {isEditing ? (
-            <input
-              type="text"
-              name="nome"
-              value={perfilData.nome}
-              onChange={handleInputChange}
-              className="perfil-input"
-            />
-          ) : (
-            <h2 className="perfil-name">{perfilData.nome}</h2>
-          )}
         </div>
         <div className="perfil-details">
+          <h2 className="text-dark">
+            <strong>{perfilData.nome}</strong>
+          </h2>
           <p>
-            <strong>Email:</strong> {isEditing ? (
-              <input
-                type="email"
-                name="email"
-                value={perfilData.email}
-                onChange={handleInputChange}
-                className="perfil-input"
-              />
-            ) : (
-              perfilData.email
-            )}
-          </p>
-          <p>
-            <strong>Empresa:</strong> {isEditing ? (
-              <input
-                type="text"
-                name="empresa"
-                value={perfilData.empresa}
-                onChange={handleInputChange}
-                className="perfil-input"
-              />
-            ) : (
-              perfilData.empresa
-            )}
-          </p>
-          <p>
-            <strong>Cargo:</strong> {isEditing ? (
-              <select
-                name="opcaoSelecionada"
-                value={perfilData.opcaoSelecionada}
-                onChange={handleInputChange}
-                className="perfil-select form-select"
-              >
-                {options.map((option) => (
-                  <option
-                    key={option.value}
-                    value={option.value}
-                    disabled={option.disabled}
-                  >
-                    {option.label}
-                  </option>
-                ))}
-              </select>
-            ) : (
-                <span className="perfil-option">{perfilData.opcaoSelecionada}</span>
-            )}
+            <strong>Email:</strong> {perfilData.email}
           </p>
         </div>
-        <button className="perfil-button" onClick={isEditing ? handleSave : toggleEdit}>
-          {isEditing ? "Salvar" : "Editar Perfil"}
+        <button className="btn btn-danger mt-2" onClick={handleLogout}>
+          <FontAwesomeIcon icon={faSignOutAlt} /> Sair
         </button>
       </div>
     </div>

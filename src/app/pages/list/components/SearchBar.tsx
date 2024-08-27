@@ -1,29 +1,41 @@
+import React from "react";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React from "react";
-
-
+import { getAuth } from "firebase/auth";
 
 interface SearchBarProps {
   searchTerm: string;
+  selectedOperator: string;
   onSearchChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onOperatorChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+  onSortChange: (e: React.ChangeEvent<HTMLSelectElement>) => void; 
 }
 
-export const SearchBar: React.FC<SearchBarProps> = ({ searchTerm, onSearchChange }) => {
+export const SearchBar: React.FC<SearchBarProps> = ({ searchTerm, selectedOperator, onSearchChange, onSortChange, onOperatorChange }) => {
+  const auth = getAuth();
+  const userId = auth.currentUser?.uid;
+  const isAdmin = (userId === 'QtWNWEPXcTMUPrQQrzYj1JjWJC73'); 
+
   return (
     <>
       <div className="header-list">
         <h1>Lista de Clientes</h1>
       </div>
       <div className="pesquisa">
-        <select name="" id="" className="form-select select-operador">
-          <option value="">Operador</option>
-          <option value="">Camila</option>
-          <option value="">Eliane</option>
-          <option value="">Joyce</option>
-          <option value="">Luana</option>
-          <option value="">Luciana</option>
-        </select>
+        {isAdmin && (
+          <select
+            value={selectedOperator}
+            onChange={onOperatorChange}
+            className="form-select select-operador"
+          >
+            <option value="">Todos</option>
+            <option value="Camila">Camila</option>
+            <option value="Eliane">Eliane</option>
+            <option value="Joyce">Joyce</option>
+            <option value="Luana">Luana</option>
+            <option value="Luciana">Luciana</option>
+          </select>
+        )}
         <input
           type="text"
           placeholder="Pesquisar cliente..."
@@ -36,13 +48,12 @@ export const SearchBar: React.FC<SearchBarProps> = ({ searchTerm, onSearchChange
         </button>
 
         <label htmlFor="sortBy" className="label_sortby text-white">Ordenar por:</label>
-        <select name="sortBy" id="sortBy" className="sortby form-select">
-          <option className="opt-sortby" value="alphabetical">Selecione</option>
+        <select name="sortBy" id="sortBy" className="sortby form-select" onChange={onSortChange}>
+          <option className="opt-sortby" value="">Selecione</option>
           <option className="opt-sortby" value="alphabetical">Ordem Alfabética</option>
-          <option className="opt-sortby" value="newest">Novo</option>
-          <option className="opt-sortby" value="oldest">Antigo</option>
+          <option className="opt-sortby" value="newest">Mais Novo</option>
+          <option className="opt-sortby" value="oldest">Mais Antigo</option>
         </select>
-
       </div>
     </>
   );

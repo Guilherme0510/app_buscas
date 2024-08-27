@@ -1,57 +1,98 @@
-import React, { useState } from "react";
+// src/pages/Dash.tsx
+import React, { useState, useEffect } from "react";
 import maps_icon from "../../assets/images/maps-icon.png";
 import { SearchInput, SearchResult } from "./components";
+import { db } from "../../firebaseConfig";
+import { collection, getDocs } from "firebase/firestore";
 
 export const Dash: React.FC = () => {
-  const [results] = useState([
-    {
-      title: "Colatina Hotel",
-      subtitle: "Hotéis",
-      description: "Seja bem vindo ao Hotel Colatina",
-      mapUrl:
-        "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15040.74074776214!2d-40.6277386!3d-19.5336615!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xb7a827abc19f33%3A0x5ab431e792569751!2sColatina%20Hotel!5e0!3m2!1spt-BR!2sbr!4v1723835055545!5m2!1spt-BR!2sbr",
-    },
-    {
-      title: "Local 2",
-      subtitle: "Subtítulo 2",
-      description: "Descrição breve do local 2",
-      mapUrl:
-        "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15040.74074776214!2d-40.6277386!3d-19.5336615!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xb7a827abc19f33%3A0x5ab431e792569751!2sColatina%20Hotel!5e0!3m2!1spt-BR!2sbr!4v1723835055545!5m2!1spt-BR!2sbr",
-    },
-    {
-      title: "Local 3",
-      subtitle: "Subtítulo 3",
-      description: "Descrição breve do local 3",
-      mapUrl:
-        "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15040.74074776214!2d-40.6277386!3d-19.5336615!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xb7a827abc19f33%3A0x5ab431e792569751!2sColatina%20Hotel!5e0!3m2!1spt-BR!2sbr!4v1723835055545!5m2!1spt-BR!2sbr",
-    },
-  ]);
+  const [clients, setClients] = useState<any[]>([]);
+  const [filteredClients, setFilteredClients] = useState<any[]>([]);
+  const [query, setQuery] = useState('');
+  const [locationQuery, setLocationQuery] = useState('');
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchClients = async () => {
+      try {
+        const querySnapshot = await getDocs(collection(db, "clientes"));
+        const clientsData = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        setClients(clientsData);
+        setFilteredClients(clientsData);
+      } catch (error) {
+        console.error("Erro ao buscar clientes:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchClients();
+  }, []);
+
+  // Função para normalizar a string removendo acentos, espaços e convertendo para minúsculas
+  const normalizeString = (str: string) => {
+    return str
+      .normalize("NFD") // Normaliza a string para decompor acentos e diacríticos
+      .replace(/[\u0300-\u036f]/g, "") // Remove diacríticos
+      .replace(/\s+/g, '') // Remove todos os espaços em branco
+      .toLowerCase(); // Converte para minúsculas
+  };
+
+  useEffect(() => {
+    const handleSearch = () => {
+      const lowerQuery = normalizeString(query);
+      const lowerLocationQuery = normalizeString(locationQuery);
+
+      const filtered = clients.filter(client =>
+        (normalizeString(client.nome || '').includes(lowerQuery) ||
+          normalizeString(client.ramo || '').includes(lowerQuery)) &&
+        (lowerLocationQuery
+          ? normalizeString(client.estado || '').includes(lowerLocationQuery) ||
+            normalizeString(client.cidade || '').includes(lowerLocationQuery) ||
+            normalizeString(client.bairro || '').includes(lowerLocationQuery)
+          : true)
+      );
+
+      setFilteredClients(filtered);
+    };
+
+    handleSearch();  // Chama a função de busca sempre que query ou locationQuery mudam
+  }, [query, locationQuery, clients]);
+
+  if (loading) {
+    return <p>Carregando...</p>;
+  }
 
   return (
     <div className="dash-container">
       <div className="text-center header-search">
         <div className="overlay">
           <div className="title-dash">
-            <h1 className="display-4">Encontre Seu Destino</h1>
+            <h1 className="display-4">Encontre Seu Cliente</h1>
             <p className="lead">
-              Pesquise e descubra locais interessantes ao redor do Brasil.
+              Pesquise e descubra clientes interessantes ao redor do Brasil.
             </p>
           </div>
         </div>
       </div>
       <div className="container section-result">
-        <SearchInput />
-        <h2 className="my-4">Resultados Encontrados</h2>
+        <SearchInput 
+          query={query} 
+          locationQuery={locationQuery}
+          setQuery={setQuery} 
+          setLocationQuery={setLocationQuery}
+        />
+        <h2 className="my-4">Clientes Encontrados</h2>
         <div className="results-container">
-          {results.map((result, index) => (
+          {filteredClients.map((client, index) => (
             <SearchResult
-            key={index}
-            title={result.title}
-            subtitle={result.subtitle}
-            description={result.description}
-            mapUrl={result.mapUrl}
-            mapsIcon={maps_icon}  // Passa o ícone como prop
-          />
+              key={index}
+              title={client.nome}
+              subtitle={client.ramo}
+              description={client.descricao || "Descrição não disponível"}
+              mapUrl={client.mapUrl || ""}
+              mapsIcon={maps_icon}
+            />
           ))}
         </div>
       </div>

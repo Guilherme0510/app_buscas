@@ -1,5 +1,5 @@
 .dash-container {
-    background: linear-gradient(146.75deg, #1297c8 60%, #ace0de 50%) ;
+    background: linear-gradient(146.75deg, #1297c8 60%, #ace0de 50%);
 }
 
 .search-result {
@@ -38,7 +38,7 @@
 }
 
 .title-dash{
-    padding-top: 120px;
+    padding-top: 110px;
     color: #fff;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }

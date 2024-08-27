@@ -1,38 +1,37 @@
-import React, { useState } from 'react';
-import './styles/Dash.css'
-import { Form, Button } from 'react-bootstrap';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React from 'react';
+import { Form } from 'react-bootstrap';
 
+interface SearchInputProps {
+  query: string;
+  locationQuery: string;
+  setQuery: (value: string) => void;
+  setLocationQuery: (value: string) => void;
+}
 
-export const SearchInput: React.FC = () => {
-    const [query, setQuery] = useState('');
-
-    const handleSearch = () => {
-        console.log(query);
-    };
-
-    return (
-        <Form className="search">
-            <Form.Group className='d-flex'>
-                <Form.Control
-                    type="text"
-                    value={query}
-                    onChange={(e) => setQuery(e.target.value)}
-                    placeholder="O que Procura?"
-                    className='input-search'
-                />
-                <Form.Control
-                    type="text"
-                    value={query}
-                    onChange={(e) => setQuery(e.target.value)}
-                    placeholder="Em qual Localização?"
-                    className='input-search'
-                />
-            </Form.Group>
-            <Button variant="primary" onClick={handleSearch}>
-                <FontAwesomeIcon icon={faSearch} /> Pesquisar
-            </Button>
-        </Form>
-    );
+export const SearchInput: React.FC<SearchInputProps> = ({
+  query,
+  locationQuery,
+  setQuery,
+  setLocationQuery
+}) => {
+  return (
+    <Form className="search">
+      <Form.Group className='d-flex'>
+        <Form.Control
+          type="text"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          placeholder="Nome ou Ramo"
+          className='input-search'
+        />
+        <Form.Control
+          type="text"
+          value={locationQuery}
+          onChange={(e) => setLocationQuery(e.target.value)}
+          placeholder="Estado, Cidade ou Bairro"
+          className='input-search'
+        />
+      </Form.Group>
+    </Form>
+  );
 };

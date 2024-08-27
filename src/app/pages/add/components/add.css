@@ -1,11 +1,13 @@
-.banner-add{
-    background: linear-gradient(145deg, #1297c8 55%, #ace0de 55%) ;
-height: 101vh;    padding: 20px;
+.banner-add {
+    background: linear-gradient(145deg, #1297c8 55%, #ace0de 55%);
+    height: 140vh;
+    padding: 20px;
     justify-content: center;
     align-items: center;
     align-content: center;
     display: flex;
 }
+
 .add-content-container {
     width: 800px;
     padding: 20px;
@@ -45,7 +47,6 @@ height: 101vh;    padding: 20px;
     padding: 10px;
     border: none;
     border-radius: 8px;
-    color: #f0f0f0;
     transition: all 0.3s ease;
 }
 
@@ -93,6 +94,7 @@ height: 101vh;    padding: 20px;
     from {
         opacity: 0;
     }
+
     to {
         opacity: 1;
     }
@@ -103,12 +105,9 @@ height: 101vh;    padding: 20px;
         transform: translateY(20px);
         opacity: 0;
     }
+
     to {
         transform: translateY(0);
         opacity: 1;
     }
-}
-
-@media screen and (max-width: 992px) {
-    .banner-add{}
 }

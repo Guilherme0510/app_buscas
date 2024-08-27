@@ -94,7 +94,12 @@
     transform: translateY(-3px);
 }
 
-.perfil-select{
+.perfil-logout-button {
+    background-color: #e74c3c;
+    color: white;
+}
+
+.perfil-select {
     display: flex;
     justify-content: center;
     flex-direction: column;
