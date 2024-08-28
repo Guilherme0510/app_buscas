@@ -93,6 +93,11 @@
 }
 
 
+.container-loading{
+    height: 100vh;
+    
+}
+
 @media screen and (max-width: 992px) {
     .search{
         flex-direction: column;
