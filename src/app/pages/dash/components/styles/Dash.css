@@ -11,7 +11,7 @@
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     background-color: #fff;
-    height: 200px;
+    height: auto;
     margin-block: 10px;
 }
 
@@ -90,6 +90,28 @@
     display: flex;
     align-items: center;
     flex-direction: column;
+}
+
+.result-description{
+    text-align: justify;
+    margin-right: 25px!important;
+}
+
+.icons{
+    display: flex;
+    gap: 10px;
+}
+
+.icons img{
+    height: 30px;
+    width: 30px;
+    object-fit: cover;
+}
+
+.icons a:hover{
+    filter: brightness(70%);
+    scale: 1.02;
+    transform: translateY(-3px);
 }
 
 

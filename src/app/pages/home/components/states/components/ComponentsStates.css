@@ -31,6 +31,10 @@
     margin: 30px 40px; 
 }
 
+.state-list button{
+    border: none;
+}
+
 .state-list img {
     max-width: 137px; 
     height: auto;

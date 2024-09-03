@@ -1,6 +1,6 @@
-.banner-add {
+.banner-edit {
     background: linear-gradient(145deg, #1297c8 55%, #ace0de 55%);
-    height: 220vh;
+    height: 140vh;
     padding: 20px;
     justify-content: center;
     align-items: center;
@@ -8,7 +8,7 @@
     display: flex;
 }
 
-.add-content-container {
+.edit-content-container {
     width: 800px;
     padding: 20px;
     background: rgba(0, 0, 0, 0.2);
@@ -25,7 +25,7 @@
     color: #f0f0f0;
 }
 
-.add-form {
+.edit-form {
     display: flex;
     flex-direction: column;
 }

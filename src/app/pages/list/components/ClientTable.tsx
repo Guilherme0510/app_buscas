@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom"; // Importe o useNavigate
 import { Client } from "./types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
@@ -6,6 +7,7 @@ import { DeleteSelectedButton } from "./DeleteSelectedButton";
 import { db } from "../../../firebaseConfig";
 import { doc, deleteDoc } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
+
 interface ClientTableProps {
   clients: Client[];
   onDeleteClients: (ids: string[]) => void;
@@ -14,9 +16,10 @@ interface ClientTableProps {
 export const ClientTable: React.FC<ClientTableProps> = ({ clients, onDeleteClients }) => {
   const [selectedRows, setSelectedRows] = useState<Set<string>>(new Set());
   const [filteredClients, setFilteredClients] = useState<Client[]>([]);
+  const navigate = useNavigate(); // Hook de navegação
   const auth = getAuth();
-  const userId = auth.currentUser?.uid
-  const Admin = (userId === 'QtWNWEPXcTMUPrQQrzYj1JjWJC73')
+  const userId = auth.currentUser?.uid;
+  const Admin = userId === "QtWNWEPXcTMUPrQQrzYj1JjWJC73";
 
   useEffect(() => {
     const fetchFilteredClients = async () => {
@@ -25,11 +28,11 @@ export const ClientTable: React.FC<ClientTableProps> = ({ clients, onDeleteClien
         if (Admin) {
           filteredClientsList = clients;
         } else {
-          filteredClientsList = clients.filter(client => client.createdBy === userId);
+          filteredClientsList = clients.filter((client) => client.createdBy === userId);
         }
         setFilteredClients(filteredClientsList);
       } catch (error) {
-        console.error('Erro ao filtrar clientes: ', error);
+        console.error("Erro ao filtrar clientes: ", error);
       }
     };
 
@@ -38,14 +41,14 @@ export const ClientTable: React.FC<ClientTableProps> = ({ clients, onDeleteClien
 
   const handleSelectAllChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.checked) {
-      setSelectedRows(new Set(filteredClients.map(client => client.id)));
+      setSelectedRows(new Set(filteredClients.map((client) => client.id)));
     } else {
       setSelectedRows(new Set());
     }
   };
 
   const handleCheckboxChange = (id: string) => {
-    setSelectedRows(prevSelectedRows => {
+    setSelectedRows((prevSelectedRows) => {
       const newSelectedRows = new Set(prevSelectedRows);
       if (newSelectedRows.has(id)) {
         newSelectedRows.delete(id);
@@ -59,7 +62,7 @@ export const ClientTable: React.FC<ClientTableProps> = ({ clients, onDeleteClien
   const handleDeleteSelected = async () => {
     if (window.confirm("Tem certeza de que deseja excluir os clientes selecionados?")) {
       try {
-        const deletePromises = Array.from(selectedRows).map(async id => {
+        const deletePromises = Array.from(selectedRows).map(async (id) => {
           try {
             const clientDocRef = doc(db, "clientes", id);
             await deleteDoc(clientDocRef);
@@ -85,13 +88,17 @@ export const ClientTable: React.FC<ClientTableProps> = ({ clients, onDeleteClien
         const clientDocRef = doc(db, "clientes", id);
         await deleteDoc(clientDocRef);
         console.log(`Cliente com ID ${id} excluído com sucesso.`);
-        onDeleteClients([id]); 
+        onDeleteClients([id]);
       } catch (error) {
         console.error("Erro ao excluir cliente: ", error);
       }
     }
   };
 
+  // Função para navegar para a rota de edição
+  const handleEditClient = (id: string) => {
+    navigate(`/edit/${id}`);
+  };
 
   return (
     <>
@@ -121,7 +128,7 @@ export const ClientTable: React.FC<ClientTableProps> = ({ clients, onDeleteClien
               <td colSpan={5} className="text-center">Nenhum cliente encontrado</td>
             </tr>
           ) : (
-            filteredClients.map(client => (
+            filteredClients.map((client) => (
               <tr key={client.id}>
                 <td
                   style={{
@@ -160,7 +167,8 @@ export const ClientTable: React.FC<ClientTableProps> = ({ clients, onDeleteClien
                 >
                   {client.createdByName}
                 </td>
-                <td className="bg-secondary"
+                <td
+                  className="bg-secondary"
                   style={{
                     backgroundColor: selectedRows.has(client.id) ? "#5c5c5c" : "",
                     color: selectedRows.has(client.id) ? "#fff" : "",
@@ -168,6 +176,7 @@ export const ClientTable: React.FC<ClientTableProps> = ({ clients, onDeleteClien
                 >
                   <button
                     className="btn btn-edit text-white"
+                    onClick={() => handleEditClient(client.id)} // Chama a função de navegação
                     style={{ color: selectedRows.has(client.id) ? "#fff" : "" }}
                   >
                     <FontAwesomeIcon icon={faEdit} />

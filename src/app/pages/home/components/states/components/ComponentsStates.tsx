@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import './ComponentsStates.css';
 import { 
   acre, amapa, amazonas, para, rondonia, roraima, tocantins,
@@ -11,6 +12,11 @@ import {
 
 export const ComponentsStates: React.FC = () => {
   const [selectedRegion, setSelectedRegion] = useState<string>("Norte");
+  const navigate = useNavigate();
+
+  const handleStateClick = (stateName: string) => {
+    navigate(`/pesquisas?location=${encodeURIComponent(stateName)}`);
+  };
 
   return (
     <Container className="estados-container">
@@ -32,49 +38,49 @@ export const ComponentsStates: React.FC = () => {
           <ul className="state-list">
             {selectedRegion === "Norte" && (
               <>
-                <li><a href="/"><img src={acre} alt="" /></a>Acre</li>
-                <li><a href="/"><img src={amapa} alt="" /></a>Amapá</li>
-                <li><a href="/"><img src={amazonas} alt="" /></a>Amazonas</li>
-                <li><a href="/"><img src={para} alt="" /></a>Pará</li>
-                <li><a href="/"><img src={rondonia} alt="" /></a>Rondônia</li>
-                <li><a href="/"><img src={roraima} alt="" /></a>Roraima</li>
-                <li><a href="/"><img src={tocantins} alt="" /></a>Tocantins</li>
+                <li><button onClick={() => handleStateClick("Acre")}><img src={acre} alt="Acre" /></button>Acre</li>
+                <li><button onClick={() => handleStateClick("Amapá")}><img src={amapa} alt="Amapá" /></button>Amapá</li>
+                <li><button onClick={() => handleStateClick("Amazonas")}><img src={amazonas} alt="Amazonas" /></button>Amazonas</li>
+                <li><button onClick={() => handleStateClick("Pará")}><img src={para} alt="Pará" /></button>Pará</li>
+                <li><button onClick={() => handleStateClick("Rondônia")}><img src={rondonia} alt="Rondônia" /></button>Rondônia</li>
+                <li><button onClick={() => handleStateClick("Roraima")}><img src={roraima} alt="Roraima" /></button>Roraima</li>
+                <li><button onClick={() => handleStateClick("Tocantins")}><img src={tocantins} alt="Tocantins" /></button>Tocantins</li>
               </>
             )}
             {selectedRegion === "Nordeste" && (
               <>
-                <li><a href="/"><img src={alagoas} alt="" /></a>Alagoas</li>
-                <li><a href="/"><img src={bahia} alt="" /></a>Bahia</li>
-                <li><a href="/"><img src={ceara} alt="" /></a>Ceará</li>
-                <li><a href="/"><img src={maranhao} alt="" /></a>Maranhão</li>
-                <li><a href="/"><img src={paraiba} alt="" /></a>Paraíba</li>
-                <li><a href="/"><img src={pernambuco} alt="" /></a>Pernambuco</li>
-                <li><a href="/"><img src={piaui} alt="" /></a>Piauí</li>
-                <li><a href="/"><img src={rioGrandeDoNorte} alt="" /></a>Rio Grande do Norte</li>
-                <li><a href="/"><img src={sergipe} alt="" /></a>Sergipe</li>
+                <li><button onClick={() => handleStateClick("Alagoas")}><img src={alagoas} alt="Alagoas" /></button>Alagoas</li>
+                <li><button onClick={() => handleStateClick("Bahia")}><img src={bahia} alt="Bahia" /></button>Bahia</li>
+                <li><button onClick={() => handleStateClick("Ceará")}><img src={ceara} alt="Ceará" /></button>Ceará</li>
+                <li><button onClick={() => handleStateClick("Maranhão")}><img src={maranhao} alt="Maranhão" /></button>Maranhão</li>
+                <li><button onClick={() => handleStateClick("Paraíba")}><img src={paraiba} alt="Paraíba" /></button>Paraíba</li>
+                <li><button onClick={() => handleStateClick("Pernambuco")}><img src={pernambuco} alt="Pernambuco" /></button>Pernambuco</li>
+                <li><button onClick={() => handleStateClick("Piauí")}><img src={piaui} alt="Piauí" /></button>Piauí</li>
+                <li><button onClick={() => handleStateClick("Rio Grande do Norte")}><img src={rioGrandeDoNorte} alt="Rio Grande do Norte" /></button>Rio Grande do Norte</li>
+                <li><button onClick={() => handleStateClick("Sergipe")}><img src={sergipe} alt="Sergipe" /></button>Sergipe</li>
               </>
             )}
             {selectedRegion === "Centro-Oeste" && (
               <>
-                <li><a href="/"><img src={distritoFederal} alt="" /></a>Distrito Federal</li>
-                <li><a href="/"><img src={goias} alt="" /></a>Goiás</li>
-                <li><a href="/"><img src={matoGrosso} alt="" /></a>Mato Grosso</li>
-                <li><a href="/"><img src={matoGrossoDoSul} alt="" /></a>Mato Grosso do Sul</li>
+                <li><button onClick={() => handleStateClick("Distrito Federal")}><img src={distritoFederal} alt="Distrito Federal" /></button>Distrito Federal</li>
+                <li><button onClick={() => handleStateClick("Goiás")}><img src={goias} alt="Goiás" /></button>Goiás</li>
+                <li><button onClick={() => handleStateClick("Mato Grosso")}><img src={matoGrosso} alt="Mato Grosso" /></button>Mato Grosso</li>
+                <li><button onClick={() => handleStateClick("Mato Grosso do Sul")}><img src={matoGrossoDoSul} alt="Mato Grosso do Sul" /></button>Mato Grosso do Sul</li>
               </>
             )}
             {selectedRegion === "Sudeste" && (
               <>
-                <li><a href="/"><img src={espiritoSanto} alt="" /></a>Espírito Santo</li>
-                <li><a href="/"><img src={minasGerais} alt="" /></a>Minas Gerais</li>
-                <li><a href="/"><img src={rioDeJaneiro} alt="" /></a>Rio de Janeiro</li>
-                <li><a href="/"><img src={saoPaulo} alt="" /></a>São Paulo</li>
+                <li><button onClick={() => handleStateClick("Espírito Santo")}><img src={espiritoSanto} alt="Espírito Santo" /></button>Espírito Santo</li>
+                <li><button onClick={() => handleStateClick("Minas Gerais")}><img src={minasGerais} alt="Minas Gerais" /></button>Minas Gerais</li>
+                <li><button onClick={() => handleStateClick("Rio de Janeiro")}><img src={rioDeJaneiro} alt="Rio de Janeiro" /></button>Rio de Janeiro</li>
+                <li><button onClick={() => handleStateClick("São Paulo")}><img src={saoPaulo} alt="São Paulo" /></button>São Paulo</li>
               </>
             )}
             {selectedRegion === "Sul" && (
               <>
-                <li><a href="/"><img src={parana} alt="" /></a>Paraná</li>
-                <li><a href="/"><img src={rioGrandeDoSul} alt="" /></a>Rio Grande do Sul</li>
-                <li><a href="/"><img src={santaCatarina} alt="" /></a>Santa Catarina</li>
+                <li><button onClick={() => handleStateClick("Paraná")}><img src={parana} alt="Paraná" /></button>Paraná</li>
+                <li><button onClick={() => handleStateClick("Rio Grande do Sul")}><img src={rioGrandeDoSul} alt="Rio Grande do Sul" /></button>Rio Grande do Sul</li>
+                <li><button onClick={() => handleStateClick("Santa Catarina")}><img src={santaCatarina} alt="Santa Catarina" /></button>Santa Catarina</li>
               </>
             )}
           </ul>

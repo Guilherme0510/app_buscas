@@ -5,7 +5,7 @@ import { collection, addDoc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import { getAuth } from "firebase/auth";
 import './components/add.css';
-import { useAuth } from "../../context/AuthContext"; 
+import { useAuth } from "../../context/AuthContext";
 
 export const Add: React.FC = () => {
     const [mapVisible, setMapVisible] = useState<boolean>(false);
@@ -14,8 +14,8 @@ export const Add: React.FC = () => {
     const [errorMessage, setErrorMessage] = useState<string>("");
     const navigate = useNavigate();
     const auth = getAuth();
-    const userId = auth.currentUser?.uid 
-    const { nome } = useAuth(); 
+    const userId = auth.currentUser?.uid
+    const { nome } = useAuth();
 
     const handleMapClick = () => {
         setMapVisible(true);
@@ -35,6 +35,11 @@ export const Add: React.FC = () => {
         const estado = (document.getElementById('estado') as HTMLInputElement).value;
         const cidade = (document.getElementById('cidade') as HTMLInputElement).value;
         const bairro = (document.getElementById('bairro') as HTMLInputElement).value;
+        const facebook = (document.getElementById('facebook') as HTMLInputElement).value;
+        const instagram = (document.getElementById('instagram') as HTMLInputElement).value;
+        const whatsapp = (document.getElementById('whatsapp') as HTMLInputElement).value;
+        const endereco = (document.getElementById('endereco') as HTMLInputElement).value;
+
 
         if (mapVisible && !mapUrl.startsWith("https://www.google.com/maps")) {
             setErrorMessage("Por favor, insira uma URL válida do Google Maps.");
@@ -51,7 +56,11 @@ export const Add: React.FC = () => {
                 estado,
                 cidade,
                 bairro,
-                createdBy: userId, 
+                facebook,
+                instagram,
+                whatsapp,
+                endereco,
+                createdBy: userId,
                 createdByName: nome,
                 createdAt: new Date().toISOString(),
             });
@@ -66,6 +75,10 @@ export const Add: React.FC = () => {
             (document.getElementById('estado') as HTMLInputElement).value = "";
             (document.getElementById('cidade') as HTMLInputElement).value = "";
             (document.getElementById('bairro') as HTMLInputElement).value = "";
+            (document.getElementById('facebook') as HTMLInputElement).value = "";
+            (document.getElementById('instagram') as HTMLInputElement).value = "";
+            (document.getElementById('whatsapp') as HTMLInputElement).value = "";
+            (document.getElementById('endereco') as HTMLInputElement).value = "";
 
             setMapUrl("");
             setMapVisible(false);
@@ -112,10 +125,31 @@ export const Add: React.FC = () => {
                                 <input type="text" id="bairro" className="form-control" placeholder="Digite o bairro da empresa" required />
                             </div>
                         </div>
-                        <div className="form-group col-md-12">
-                                <label htmlFor="descricao">Descrição da Empresa</label>
-                                <textarea id="descricao" className="form-control" placeholder="Digite a descrição da empresa" required />
+                        <div className="row">
+                            <div className="form-group col-md-6">
+                                <label htmlFor="instagram">Instagram</label>
+                                <input type="text" id="instagram" className="form-control" placeholder="Digite o instagram da empresa"  />
                             </div>
+                            <div className="form-group col-md-6">
+                                <label htmlFor="facebook">Facebook</label>
+                                <input type="text" id="facebook" className="form-control" placeholder="Digite o facebook da empresa"  />
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="form-group col-md-6">
+                                <label htmlFor="whatsapp">WhatsApp</label>
+                                <input type="text" id="whatsapp" className="form-control" placeholder="Digite o whatsapp da empresa"  />
+                            </div>
+                            <div className="form-group col-md-6">
+                                <label htmlFor="endereco">Endereço Completo</label>
+                                <input type="text" id="endereco" className="form-control" placeholder="Digite o endereço da empresa" required />
+                            </div>
+                        </div>
+
+                        <div className="form-group col-md-12">
+                            <label htmlFor="descricao">Descrição da Empresa</label>
+                            <textarea id="descricao" className="form-control" placeholder="Digite a descrição da empresa" required />
+                        </div>
                         {!mapVisible && (
                             <div className="map-placeholder" onClick={handleMapClick}>
                                 <p>Clique para adicionar o mapa</p>

@@ -23,6 +23,7 @@ export const SearchInput: React.FC<SearchInputProps> = ({
           onChange={(e) => setQuery(e.target.value)}
           placeholder="Nome ou Ramo"
           className='input-search'
+          aria-label="Nome ou ramo"
         />
         <Form.Control
           type="text"
@@ -30,6 +31,7 @@ export const SearchInput: React.FC<SearchInputProps> = ({
           onChange={(e) => setLocationQuery(e.target.value)}
           placeholder="Estado, Cidade ou Bairro"
           className='input-search'
+          aria-label="Estado, cidade ou bairro"
         />
       </Form.Group>
     </Form>

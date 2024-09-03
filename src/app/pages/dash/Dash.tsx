@@ -1,22 +1,29 @@
-// src/pages/Dash.tsx
 import React, { useState, useEffect } from "react";
-import maps_icon from "../../assets/images/maps-icon.png";
+import { useLocation } from 'react-router-dom';
 import { SearchInput, SearchResult } from "./components";
 import { db } from "../../firebaseConfig";
 import { collection, getDocs } from "firebase/firestore";
+import { CircularProgress } from "@mui/material";
+import maps_icon from "../../assets/images/maps-icon.png";
+import "../../loading.css";
 
 export const Dash: React.FC = () => {
   const [clients, setClients] = useState<any[]>([]);
   const [filteredClients, setFilteredClients] = useState<any[]>([]);
-  const [query, setQuery] = useState('');
-  const [locationQuery, setLocationQuery] = useState('');
+  const [query, setQuery] = useState("");
+  const [locationQuery, setLocationQuery] = useState("");
   const [loading, setLoading] = useState(true);
+
+  const location = useLocation();
 
   useEffect(() => {
     const fetchClients = async () => {
       try {
         const querySnapshot = await getDocs(collection(db, "clientes"));
-        const clientsData = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        const clientsData = querySnapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
         setClients(clientsData);
         setFilteredClients(clientsData);
       } catch (error) {
@@ -29,38 +36,51 @@ export const Dash: React.FC = () => {
     fetchClients();
   }, []);
 
-  // Função para normalizar a string removendo acentos, espaços e convertendo para minúsculas
-  const normalizeString = (str: string) => {
-    return str
-      .normalize("NFD") // Normaliza a string para decompor acentos e diacríticos
-      .replace(/[\u0300-\u036f]/g, "") // Remove diacríticos
-      .replace(/\s+/g, '') // Remove todos os espaços em branco
-      .toLowerCase(); // Converte para minúsculas
-  };
+  useEffect(() => {
+    const queryParams = new URLSearchParams(location.search);
+    const query = queryParams.get("query") || "";
+    const locationQuery = queryParams.get("location") || "";
+
+    setQuery(query);
+    setLocationQuery(locationQuery);
+  }, [location.search]);
 
   useEffect(() => {
+    const normalizeString = (str: string) => {
+      return str
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/\s+/g, "")
+        .toLowerCase();
+    };
+
     const handleSearch = () => {
       const lowerQuery = normalizeString(query);
       const lowerLocationQuery = normalizeString(locationQuery);
 
-      const filtered = clients.filter(client =>
-        (normalizeString(client.nome || '').includes(lowerQuery) ||
-          normalizeString(client.ramo || '').includes(lowerQuery)) &&
-        (lowerLocationQuery
-          ? normalizeString(client.estado || '').includes(lowerLocationQuery) ||
-            normalizeString(client.cidade || '').includes(lowerLocationQuery) ||
-            normalizeString(client.bairro || '').includes(lowerLocationQuery)
-          : true)
+      const filtered = clients.filter(
+        (client) =>
+          (normalizeString(client.nome || "").includes(lowerQuery) ||
+            normalizeString(client.ramo || "").includes(lowerQuery)) &&
+          (lowerLocationQuery
+            ? normalizeString(client.estado || "").includes(lowerLocationQuery) ||
+              normalizeString(client.cidade || "").includes(lowerLocationQuery) ||
+              normalizeString(client.bairro || "").includes(lowerLocationQuery)
+            : true)
       );
 
       setFilteredClients(filtered);
     };
 
-    handleSearch();  // Chama a função de busca sempre que query ou locationQuery mudam
+    handleSearch();
   }, [query, locationQuery, clients]);
 
   if (loading) {
-    return <p>Carregando...</p>;
+    return (
+      <div className="circle-loading">
+        <CircularProgress color="inherit" className="circle"/>
+      </div>
+    );
   }
 
   return (
@@ -76,10 +96,10 @@ export const Dash: React.FC = () => {
         </div>
       </div>
       <div className="container section-result">
-        <SearchInput 
-          query={query} 
+        <SearchInput
+          query={query}
           locationQuery={locationQuery}
-          setQuery={setQuery} 
+          setQuery={setQuery}
           setLocationQuery={setLocationQuery}
         />
         <h2 className="my-4">Clientes Encontrados</h2>
@@ -92,6 +112,10 @@ export const Dash: React.FC = () => {
               description={client.descricao || "Descrição não disponível"}
               mapUrl={client.mapUrl || ""}
               mapsIcon={maps_icon}
+              endereco={client.endereco}
+              iconFace={client.facebook}
+              iconInsta={client.instagram}
+              iconWhats={client.whatsapp}
             />
           ))}
         </div>
