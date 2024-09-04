@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { useLocation } from 'react-router-dom';
+import { useLocation } from "react-router-dom";
 import { SearchInput, SearchResult } from "./components";
 import { db } from "../../firebaseConfig";
 import { collection, getDocs } from "firebase/firestore";
 import { CircularProgress } from "@mui/material";
 import maps_icon from "../../assets/images/maps-icon.png";
 import "../../loading.css";
+import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 interface Client {
+  // id: string;
   nome: string;
   ramo: string;
   descricao?: string;
@@ -29,6 +32,8 @@ export const Dash: React.FC = () => {
   const [selectedRamo, setSelectedRamo] = useState("");
   const [ramosOptions, setRamosOptions] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 8;
 
   const location = useLocation();
 
@@ -43,7 +48,9 @@ export const Dash: React.FC = () => {
         setClients(clientsData);
         setFilteredClients(clientsData);
 
-        const ramos = [...new Set(clientsData.map((client) => client.ramo).filter(Boolean))];
+        const ramos = [
+          ...new Set(clientsData.map((client) => client.ramo).filter(Boolean)),
+        ];
         setRamosOptions(ramos);
       } catch (error) {
         console.error("Erro ao buscar clientes:", error);
@@ -83,23 +90,104 @@ export const Dash: React.FC = () => {
           (normalizeString(client.nome || "").includes(lowerQuery) ||
             normalizeString(client.ramo || "").includes(lowerQuery)) &&
           (lowerLocationQuery
-            ? normalizeString(client.estado || "").includes(lowerLocationQuery) ||
-              normalizeString(client.cidade || "").includes(lowerLocationQuery) ||
+            ? normalizeString(client.estado || "").includes(
+                lowerLocationQuery
+              ) ||
+              normalizeString(client.cidade || "").includes(
+                lowerLocationQuery
+              ) ||
               normalizeString(client.bairro || "").includes(lowerLocationQuery)
             : true) &&
-          (lowerSelectedRamo ? normalizeString(client.ramo || "").includes(lowerSelectedRamo) : true)
+          (lowerSelectedRamo
+            ? normalizeString(client.ramo || "").includes(lowerSelectedRamo)
+            : true)
       );
 
       setFilteredClients(filtered);
+      setCurrentPage(1);
     };
 
     handleSearch();
   }, [query, locationQuery, selectedRamo, clients]);
 
+  const totalPages = Math.ceil(filteredClients.length / itemsPerPage);
+
+  const handlePageChange = (newPage: number) => {
+    if (newPage >= 1 && newPage <= totalPages) {
+      setCurrentPage(newPage);
+    }
+  };
+
+  const currentClients = filteredClients.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
+  const renderPagination = () => {
+    const pages = [];
+
+    if (totalPages <= 7) {
+      for (let i = 1; i <= totalPages; i++) {
+        pages.push(
+          <button
+            key={i}
+            onClick={() => handlePageChange(i)}
+            className={i === currentPage ? "active" : ""}
+          >
+            {i}
+          </button>
+        );
+      }
+    } else {
+      // Sempre mostrar a primeira página
+      pages.push(
+        <button
+          key={1}
+          onClick={() => handlePageChange(1)}
+          className={1 === currentPage ? "active" : ""}
+        >
+          1
+        </button>
+      );
+
+      if (currentPage > 4) {
+        pages.push(<span key="left-dots">...</span>);
+      }
+
+      const startPage = Math.max(2, currentPage - 2);
+      const endPage = Math.min(totalPages - 1, currentPage + 2);
+      for (let i = startPage; i <= endPage; i++) {
+        pages.push(
+          <button
+            key={i}
+            onClick={() => handlePageChange(i)}
+            className={i === currentPage ? "active" : ""}
+          >
+            {i}
+          </button>
+        );
+      }
+
+      if (currentPage < totalPages - 3) {
+        pages.push(<span key="right-dots">...</span>);
+      }
+
+      pages.push(
+        <button
+          key={totalPages}
+          onClick={() => handlePageChange(totalPages)}
+          className={totalPages === currentPage ? "active" : ""}
+        >
+          {totalPages}
+        </button>
+      );
+    }
+
+    return pages;
+  };
   if (loading) {
     return (
       <div className="circle-loading">
-        <CircularProgress color="inherit" className="circle"/>
+        <CircularProgress color="inherit" className="circle" />
       </div>
     );
   }
@@ -128,7 +216,7 @@ export const Dash: React.FC = () => {
         />
         <h2 className="my-4">Clientes Encontrados</h2>
         <div className="results-container">
-          {filteredClients.map((client, index) => (
+          {currentClients.map((client, index) => (
             <SearchResult
               key={index}
               title={client.nome}
@@ -142,6 +230,24 @@ export const Dash: React.FC = () => {
               iconWhats={client.whatsapp}
             />
           ))}
+        </div>
+        <div className="pagination">
+          <button
+            onClick={() => handlePageChange(currentPage - 1)}
+            disabled={currentPage === 1}
+          >
+            <FontAwesomeIcon icon={faArrowLeft} />
+          </button>
+          <span>
+            {" "}
+            {currentPage} - {totalPages}
+          </span>
+          <button
+            onClick={() => handlePageChange(currentPage + 1)}
+            disabled={currentPage === totalPages}
+          >
+            <FontAwesomeIcon icon={faArrowRight} />
+          </button>
         </div>
       </div>
     </div>

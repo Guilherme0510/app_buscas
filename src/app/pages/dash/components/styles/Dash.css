@@ -114,6 +114,39 @@
     transform: translateY(-3px);
 }
 
+.pagination{
+    display: flex;
+    justify-content: center;
+    margin-block: 10px;
+    align-items: center;
+}
+
+.pagination button {
+    padding: 5px 10px;
+    margin-inline: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #464e80;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.pagination button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.pagination button:hover:not(:disabled) {
+    background-color: #464cbd;
+}
+
+.pagination span {
+    align-self: center;
+    font-size: 16px;
+    color: #464e80;
+}
+
 
 @media screen and (max-width: 992px) {
     .search {
@@ -188,4 +221,10 @@
     background-color: #007bff;
     color: #fff;
 
+}
+
+.icon_copy{
+    margin-left: 10px;
+    font-size: 18px;
+    cursor: pointer;
 }

@@ -3,6 +3,8 @@ import "./styles/Dash.css";
 import whatsapp_icon from '../../../assets/images/whatsapp.png';
 import facebook_icon from '../../../assets/images/facebook.png';
 import instagram_icon from '../../../assets/images/instagram.png';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCopy } from "@fortawesome/free-solid-svg-icons";
 
 interface SearchResultProps {
   title: string;
@@ -19,13 +21,24 @@ interface SearchResultProps {
 export const SearchResult: React.FC<SearchResultProps> = React.memo(({ title, subtitle, description, mapUrl, mapsIcon,endereco, iconFace, iconInsta, iconWhats }) => {
   const hasIcons = iconFace || iconInsta || iconWhats;
 
+  const textToCopy = "Este é o texto que será copiado.";
+
+  const copyText = async () => {
+    try {
+      await navigator.clipboard.writeText(endereco);
+     console.log("Texto copiado para áre de transferência")
+    } catch (err) {
+      console.error("Erro ao copiar texto: ", err);
+    }
+  };
+
   return (
     <div className="search-result">
       <div className="text-content">
         <h3>{title}</h3>
         <h4>{subtitle}</h4>
         <p className="result-description">{description}</p>
-        <p className="result-description">{endereco}</p>
+        <p className="result-description">{endereco} <FontAwesomeIcon onClick={copyText} className="icon_copy" icon={faCopy}/></p>
         {hasIcons && (
           <div className="icons">
             {iconFace && ( 
