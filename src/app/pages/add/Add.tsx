@@ -145,7 +145,7 @@ export const Add: React.FC = () => {
                                 <input type="text" id="endereco" className="form-control" placeholder="Digite o endereço da empresa" required />
                             </div>
                         </div>
-
+                            
                         <div className="form-group col-md-12">
                             <label htmlFor="descricao">Descrição da Empresa</label>
                             <textarea id="descricao" className="form-control" placeholder="Digite a descrição da empresa" required />

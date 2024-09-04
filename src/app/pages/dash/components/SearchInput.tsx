@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Form } from 'react-bootstrap';
 
 interface SearchInputProps {
@@ -6,14 +6,33 @@ interface SearchInputProps {
   locationQuery: string;
   setQuery: (value: string) => void;
   setLocationQuery: (value: string) => void;
+  selectedRamo: string;
+  setSelectedRamo: (value: string) => void;
+  ramosOptions: string[];
 }
 
 export const SearchInput: React.FC<SearchInputProps> = ({
   query,
   locationQuery,
   setQuery,
-  setLocationQuery
+  setLocationQuery,
+  selectedRamo,
+  setSelectedRamo,
+  ramosOptions
 }) => {
+  const [searchTerm, setSearchTerm] = useState('');
+  const [isOpen, setIsOpen] = useState(false);
+
+  const filteredOptions = ramosOptions.filter(ramo =>
+    ramo.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  const handleSelectChange = (value: string) => {
+    setSelectedRamo(value);
+    setSearchTerm(value); // Adicione esta linha para atualizar o valor do input
+    setIsOpen(false); 
+  };
+
   return (
     <Form className="search">
       <Form.Group className='d-flex'>
@@ -33,6 +52,34 @@ export const SearchInput: React.FC<SearchInputProps> = ({
           className='input-search'
           aria-label="Estado, cidade ou bairro"
         />
+        <div className="custom-select-container">
+          <input
+            type="text"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            onClick={() => setIsOpen(!isOpen)}
+            placeholder="Selecione um Ramo"
+            className='input-search'
+            aria-label="Selecione um ramo"
+          />
+          {isOpen && (
+            <ul className="custom-select-dropdown">
+              {filteredOptions.length > 0 ? (
+                filteredOptions.map((ramo, index) => (
+                  <li
+                    key={index}
+                    onClick={() => handleSelectChange(ramo)}
+                    className={selectedRamo === ramo ? 'selected' : ''}
+                  >
+                    {ramo}
+                  </li>
+                ))
+              ) : (
+                <li>Nenhum ramo encontrado</li>
+              )}
+            </ul>
+          )}
+        </div>
       </Form.Group>
     </Form>
   );

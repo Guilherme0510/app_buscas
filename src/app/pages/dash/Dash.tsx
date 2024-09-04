@@ -7,11 +7,27 @@ import { CircularProgress } from "@mui/material";
 import maps_icon from "../../assets/images/maps-icon.png";
 import "../../loading.css";
 
+interface Client {
+  nome: string;
+  ramo: string;
+  descricao?: string;
+  mapUrl?: string;
+  endereco: string;
+  facebook?: string;
+  instagram?: string;
+  whatsapp?: string;
+  estado?: string;
+  cidade?: string;
+  bairro?: string;
+}
+
 export const Dash: React.FC = () => {
-  const [clients, setClients] = useState<any[]>([]);
-  const [filteredClients, setFilteredClients] = useState<any[]>([]);
+  const [clients, setClients] = useState<Client[]>([]);
+  const [filteredClients, setFilteredClients] = useState<Client[]>([]);
   const [query, setQuery] = useState("");
   const [locationQuery, setLocationQuery] = useState("");
+  const [selectedRamo, setSelectedRamo] = useState("");
+  const [ramosOptions, setRamosOptions] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
 
   const location = useLocation();
@@ -22,10 +38,13 @@ export const Dash: React.FC = () => {
         const querySnapshot = await getDocs(collection(db, "clientes"));
         const clientsData = querySnapshot.docs.map((doc) => ({
           id: doc.id,
-          ...doc.data(),
+          ...(doc.data() as Client),
         }));
         setClients(clientsData);
         setFilteredClients(clientsData);
+
+        const ramos = [...new Set(clientsData.map((client) => client.ramo).filter(Boolean))];
+        setRamosOptions(ramos);
       } catch (error) {
         console.error("Erro ao buscar clientes:", error);
       } finally {
@@ -57,6 +76,7 @@ export const Dash: React.FC = () => {
     const handleSearch = () => {
       const lowerQuery = normalizeString(query);
       const lowerLocationQuery = normalizeString(locationQuery);
+      const lowerSelectedRamo = normalizeString(selectedRamo);
 
       const filtered = clients.filter(
         (client) =>
@@ -66,14 +86,15 @@ export const Dash: React.FC = () => {
             ? normalizeString(client.estado || "").includes(lowerLocationQuery) ||
               normalizeString(client.cidade || "").includes(lowerLocationQuery) ||
               normalizeString(client.bairro || "").includes(lowerLocationQuery)
-            : true)
+            : true) &&
+          (lowerSelectedRamo ? normalizeString(client.ramo || "").includes(lowerSelectedRamo) : true)
       );
 
       setFilteredClients(filtered);
     };
 
     handleSearch();
-  }, [query, locationQuery, clients]);
+  }, [query, locationQuery, selectedRamo, clients]);
 
   if (loading) {
     return (
@@ -101,6 +122,9 @@ export const Dash: React.FC = () => {
           locationQuery={locationQuery}
           setQuery={setQuery}
           setLocationQuery={setLocationQuery}
+          selectedRamo={selectedRamo}
+          setSelectedRamo={setSelectedRamo}
+          ramosOptions={ramosOptions}
         />
         <h2 className="my-4">Clientes Encontrados</h2>
         <div className="results-container">
