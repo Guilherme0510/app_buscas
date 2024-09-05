@@ -57,7 +57,7 @@ export const SearchInput: React.FC<SearchInputProps> = ({
 
   return (
     <Form className="search">
-      <Form.Group className="d-flex">
+      <Form.Group className=" inputs-search">
         <Form.Control
           type="text"
           value={query}

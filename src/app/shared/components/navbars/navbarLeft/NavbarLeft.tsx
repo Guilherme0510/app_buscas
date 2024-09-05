@@ -58,9 +58,6 @@ export const NavbarLeft: React.FC = () => {
                         </li>
                     </ul>
                 </div>
-                <div className='nav-contato'>
-                    <Link to={'https://wa.link/xhrg72'}>Contato</Link>
-                </div>
             </nav>
         </div>
     );

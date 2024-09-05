@@ -18,13 +18,23 @@ interface SearchResultProps {
   iconWhats?: string;
 }
 
-export const SearchResult: React.FC<SearchResultProps> = React.memo(({ title, subtitle, description, mapUrl, mapsIcon,endereco, iconFace, iconInsta, iconWhats }) => {
+const truncateDescription = (text: string, maxWords: number): string => {
+  const words = text.split(' ');
+  if (words.length > maxWords) {
+    return words.slice(0, maxWords).join(' ') + '...';
+  }
+  return text;
+};
+
+export const SearchResult: React.FC<SearchResultProps> = React.memo(({ title, subtitle, description, mapUrl, mapsIcon, endereco, iconFace, iconInsta, iconWhats }) => {
   const hasIcons = iconFace || iconInsta || iconWhats;
+  
+  const truncatedDescription = truncateDescription(description, 40);
 
   const copyText = async () => {
     try {
       await navigator.clipboard.writeText(endereco);
-     console.log("Texto copiado para áre de transferência")
+      console.log("Texto copiado para área de transferência");
     } catch (err) {
       console.error("Erro ao copiar texto: ", err);
     }
@@ -35,8 +45,12 @@ export const SearchResult: React.FC<SearchResultProps> = React.memo(({ title, su
       <div className="text-content">
         <h3>{title}</h3>
         <h4>{subtitle}</h4>
-        <p className="result-description"><small>{description}</small></p>
-        <p className="result-description fw-medium">{endereco} <FontAwesomeIcon onClick={copyText} className="icon_copy" icon={faCopy}/></p>
+        <p className="result-description">
+          <small>{truncatedDescription}</small>
+        </p>
+        <p className="result-description fw-medium">
+          {endereco} <FontAwesomeIcon onClick={copyText} className="icon_copy" icon={faCopy}/>
+        </p>
         {hasIcons && (
           <div className="icons">
             {iconFace && ( 

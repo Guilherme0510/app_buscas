@@ -1,4 +1,4 @@
-.city{
+.city {
     height: 20vh;
     background-color: #0056b3;
     border-radius: 20px 20px 0 0;
@@ -19,7 +19,7 @@
     width: 450px;
 }
 
-.search-input #search1{
+.search-input #search1 {
     width: 310px;
 }
 
@@ -29,9 +29,22 @@
 }
 
 @media screen and (max-width: 992px) {
-    .search-input{
-        width: auto;
+    .search-input {
+        display: flex;
+        width: 300px;
+    }
+
+    .search-form {
         display: flex;
         flex-direction: column;
+        gap: 10px;
+    }
+
+    .search-button {
+        width: 50px;
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 }
