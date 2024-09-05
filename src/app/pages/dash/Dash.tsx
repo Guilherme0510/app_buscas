@@ -10,7 +10,6 @@ import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 interface Client {
-  // id: string;
   nome: string;
   ramo: string;
   descricao?: string;
@@ -110,6 +109,14 @@ export const Dash: React.FC = () => {
     handleSearch();
   }, [query, locationQuery, selectedRamo, clients]);
 
+  const handleClearSearch = () => {
+    setQuery("");
+    setLocationQuery("");
+    setSelectedRamo("");
+    setFilteredClients(clients); // Reseta para mostrar todos os clientes
+    setCurrentPage(1); // Volta à primeira página
+  };
+
   const totalPages = Math.ceil(filteredClients.length / itemsPerPage);
 
   const handlePageChange = (newPage: number) => {
@@ -122,68 +129,7 @@ export const Dash: React.FC = () => {
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage
   );
-  const renderPagination = () => {
-    const pages = [];
 
-    if (totalPages <= 7) {
-      for (let i = 1; i <= totalPages; i++) {
-        pages.push(
-          <button
-            key={i}
-            onClick={() => handlePageChange(i)}
-            className={i === currentPage ? "active" : ""}
-          >
-            {i}
-          </button>
-        );
-      }
-    } else {
-      // Sempre mostrar a primeira página
-      pages.push(
-        <button
-          key={1}
-          onClick={() => handlePageChange(1)}
-          className={1 === currentPage ? "active" : ""}
-        >
-          1
-        </button>
-      );
-
-      if (currentPage > 4) {
-        pages.push(<span key="left-dots">...</span>);
-      }
-
-      const startPage = Math.max(2, currentPage - 2);
-      const endPage = Math.min(totalPages - 1, currentPage + 2);
-      for (let i = startPage; i <= endPage; i++) {
-        pages.push(
-          <button
-            key={i}
-            onClick={() => handlePageChange(i)}
-            className={i === currentPage ? "active" : ""}
-          >
-            {i}
-          </button>
-        );
-      }
-
-      if (currentPage < totalPages - 3) {
-        pages.push(<span key="right-dots">...</span>);
-      }
-
-      pages.push(
-        <button
-          key={totalPages}
-          onClick={() => handlePageChange(totalPages)}
-          className={totalPages === currentPage ? "active" : ""}
-        >
-          {totalPages}
-        </button>
-      );
-    }
-
-    return pages;
-  };
   if (loading) {
     return (
       <div className="circle-loading">
@@ -213,8 +159,9 @@ export const Dash: React.FC = () => {
           selectedRamo={selectedRamo}
           setSelectedRamo={setSelectedRamo}
           ramosOptions={ramosOptions}
+          handleClearSearch={handleClearSearch}
         />
-        <h2 className="my-4">Clientes Encontrados</h2>
+        <h2 className="my-4">Clientes Encontrados: {filteredClients.length}</h2>
         <div className="results-container">
           {currentClients.map((client, index) => (
             <SearchResult
@@ -239,7 +186,6 @@ export const Dash: React.FC = () => {
             <FontAwesomeIcon icon={faArrowLeft} />
           </button>
           <span>
-            {" "}
             {currentPage} - {totalPages}
           </span>
           <button

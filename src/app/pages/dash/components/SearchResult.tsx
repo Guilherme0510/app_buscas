@@ -21,8 +21,6 @@ interface SearchResultProps {
 export const SearchResult: React.FC<SearchResultProps> = React.memo(({ title, subtitle, description, mapUrl, mapsIcon,endereco, iconFace, iconInsta, iconWhats }) => {
   const hasIcons = iconFace || iconInsta || iconWhats;
 
-  const textToCopy = "Este é o texto que será copiado.";
-
   const copyText = async () => {
     try {
       await navigator.clipboard.writeText(endereco);
@@ -37,8 +35,8 @@ export const SearchResult: React.FC<SearchResultProps> = React.memo(({ title, su
       <div className="text-content">
         <h3>{title}</h3>
         <h4>{subtitle}</h4>
-        <p className="result-description">{description}</p>
-        <p className="result-description">{endereco} <FontAwesomeIcon onClick={copyText} className="icon_copy" icon={faCopy}/></p>
+        <p className="result-description"><small>{description}</small></p>
+        <p className="result-description fw-medium">{endereco} <FontAwesomeIcon onClick={copyText} className="icon_copy" icon={faCopy}/></p>
         {hasIcons && (
           <div className="icons">
             {iconFace && ( 
