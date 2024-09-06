@@ -3,6 +3,9 @@ import "./styles/Dash.css";
 import whatsapp_icon from '../../../assets/images/whatsapp.png';
 import facebook_icon from '../../../assets/images/facebook.png';
 import instagram_icon from '../../../assets/images/instagram.png';
+import ifood_icon from '../../../assets/images/ifood.jpg';
+import booking_icon from '../../../assets/images/booking.png';
+import site_icon from '../../../assets/images/site.png';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopy } from "@fortawesome/free-solid-svg-icons";
 
@@ -13,9 +16,12 @@ interface SearchResultProps {
   mapUrl: string;
   mapsIcon: string;
   endereco: string;
-  iconFace?: string;  
-  iconInsta?: string; 
+  iconFace?: string;
+  iconInsta?: string;
   iconWhats?: string;
+  iconIfood?: string;
+  iconBooking?: string;
+  iconSite?: string;
 }
 
 const truncateDescription = (text: string, maxWords: number): string => {
@@ -26,9 +32,9 @@ const truncateDescription = (text: string, maxWords: number): string => {
   return text;
 };
 
-export const SearchResult: React.FC<SearchResultProps> = React.memo(({ title, subtitle, description, mapUrl, mapsIcon, endereco, iconFace, iconInsta, iconWhats }) => {
-  const hasIcons = iconFace || iconInsta || iconWhats;
-  
+export const SearchResult: React.FC<SearchResultProps> = React.memo(({ title, subtitle, description, mapUrl, mapsIcon, endereco, iconFace, iconInsta, iconWhats, iconIfood, iconBooking, iconSite }) => {
+  const hasIcons = iconFace || iconInsta || iconWhats || iconIfood || iconBooking || iconSite;
+
   const truncatedDescription = truncateDescription(description, 40);
 
   const copyText = async () => {
@@ -49,11 +55,11 @@ export const SearchResult: React.FC<SearchResultProps> = React.memo(({ title, su
           <small>{truncatedDescription}</small>
         </p>
         <p className="result-description fw-medium">
-          {endereco} <FontAwesomeIcon onClick={copyText} className="icon_copy" icon={faCopy}/>
+          {endereco} <FontAwesomeIcon onClick={copyText} className="icon_copy" icon={faCopy} />
         </p>
         {hasIcons && (
           <div className="icons">
-            {iconFace && ( 
+            {iconFace && (
               <a href={iconFace} target="_blank" rel="noopener noreferrer">
                 <img src={facebook_icon} alt="Facebook" />
               </a>
@@ -68,6 +74,24 @@ export const SearchResult: React.FC<SearchResultProps> = React.memo(({ title, su
             {iconWhats && (
               <a href={iconWhats} target="_blank" rel="noopener noreferrer">
                 <img src={whatsapp_icon} alt="WhatsApp" />
+              </a>
+            )}
+            <br />
+            {iconBooking && (
+              <a href={iconBooking} target="_blank" rel="noopener noreferrer">
+                <img src={booking_icon} alt="Booking" />
+              </a>
+            )}
+                        <br />
+            {iconIfood && (
+              <a href={iconIfood} target="_blank" rel="noopener noreferrer">
+                <img src={ifood_icon} alt="Ifood" />
+              </a>
+            )}
+                        <br />
+            {iconSite && (
+              <a href={iconSite} target="_blank" rel="noopener noreferrer">
+                <img src={site_icon} alt="Site" />
               </a>
             )}
           </div>

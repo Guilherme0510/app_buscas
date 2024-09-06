@@ -3,7 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { db } from "../../firebaseConfig";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { NavbarLeft } from "../../shared/components";
-import { useAuth } from "../../context/AuthContext";
+import { useAuth } from "../../shared/context/AuthContext";
 import './components/edit.css';
 
 export const Edit: React.FC = () => {
@@ -172,7 +172,7 @@ export const Edit: React.FC = () => {
                                         className="form-control"
                                         value={clientData.instagram || ""}
                                         onChange={handleInputChange}
-                                        
+
                                     />
                                 </div>
                                 <div className="form-group col-md-6">
@@ -183,7 +183,31 @@ export const Edit: React.FC = () => {
                                         className="form-control"
                                         value={clientData.facebook || ""}
                                         onChange={handleInputChange}
-                                        
+
+                                    />
+                                </div>
+                            </div>
+                            <div className="row">
+                                <div className="form-group col-md-6">
+                                    <label htmlFor="ifood">Ifood da Empresa</label>
+                                    <input
+                                        type="text"
+                                        id="ifood"
+                                        className="form-control"
+                                        value={clientData.ifood || ""}
+                                        onChange={handleInputChange}
+
+                                    />
+                                </div>
+                                <div className="form-group col-md-6">
+                                    <label htmlFor="booking">Booking da Empresa</label>
+                                    <input
+                                        type="text"
+                                        id="booking"
+                                        className="form-control"
+                                        value={clientData.booking || ""}
+                                        onChange={handleInputChange}
+
                                     />
                                 </div>
                             </div>
@@ -196,7 +220,31 @@ export const Edit: React.FC = () => {
                                         className="form-control"
                                         value={clientData.whatsapp || ""}
                                         onChange={handleInputChange}
-                                        
+
+                                    />
+                                </div>
+                                <div className="form-group col-md-6">
+                                    <label htmlFor="numero">Numero da Empresa</label>
+                                    <input
+                                        type="text"
+                                        id="numero"
+                                        className="form-control"
+                                        value={clientData.numero || ""}
+                                        onChange={handleInputChange}
+                                        required
+                                    />
+                                </div>
+                            </div>
+                            <div className="row">
+                                <div className="form-group col-md-6">
+                                    <label htmlFor="whatsapp">Site da Empresa</label>
+                                    <input
+                                        type="text"
+                                        id="site"
+                                        className="form-control"
+                                        value={clientData.site || ""}
+                                        onChange={handleInputChange}
+
                                     />
                                 </div>
                                 <div className="form-group col-md-6">
@@ -210,6 +258,16 @@ export const Edit: React.FC = () => {
                                         required
                                     />
                                 </div>
+                            </div>
+                            <div className="form-group col-md-12">
+                                <label htmlFor="descricao">Horario de Funcionamento da Empresa</label>
+                                <textarea
+                                    id="horario"
+                                    className="form-control"
+                                    value={clientData.horario || ""}
+                                    onChange={handleInputChange}
+                                    required
+                                />
                             </div>
                             <div className="form-group col-md-12">
                                 <label htmlFor="descricao">Descrição da Empresa</label>

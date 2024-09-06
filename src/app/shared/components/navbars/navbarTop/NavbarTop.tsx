@@ -6,7 +6,7 @@ import './components/navbarTop.css'
 export const SiteNav: React.FC = () => {
   const links = [
     { label: 'Login', href: '/login' },
-    { label: 'Anuncie já!', href: 'https://wa.link/xhrg72' },
+    { label: 'Anuncie já!', href: '/anuncie' },
     
   ];
 

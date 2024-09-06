@@ -1,9 +1,9 @@
 import React from "react";
 import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-router-dom";
-import { Home, Login, Dash, Perfil, List, Add, Edit } from "../pages"; 
+import { Home, Login, Dash, Perfil, List, Add, Edit, Anuncie } from "../pages"; 
 import { SiteFooter, SiteNav } from "../shared/components";
 import PrivateRoute from "./PrivateRoute";
-import { AuthProvider } from "../context/AuthContext";
+import { AuthProvider } from "../shared/context/AuthContext";
 
 const ConditionalNav: React.FC = () => {
   const location = useLocation();
@@ -46,6 +46,7 @@ export const LocalRoutes: React.FC = () => {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/pesquisas" element={<Dash />} />
+          <Route path="/anuncie" element={<Anuncie />} />
           <Route path="/perfil" element={<PrivateRoute element={<Perfil />} />} />
           <Route path="/lista" element={<PrivateRoute element={<List />} />} />
           <Route path="/add" element={<PrivateRoute element={<Add />} />} />

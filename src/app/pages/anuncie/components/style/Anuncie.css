@@ -1,0 +1,28 @@
+.container-anuncio{
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+.card {
+    border-radius: 10px;
+    transition: transform 0.3s;
+    width: 350px;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.card-title {
+    font-weight: bold;
+}
+
+.card-text {
+    margin-bottom: 15px;
+}
+.card-body img{
+    width: 100px;
+    height: auto;
+    padding: 20px;
+}

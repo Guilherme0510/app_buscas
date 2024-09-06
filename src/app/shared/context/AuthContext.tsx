@@ -1,6 +1,6 @@
 // src/context/AuthContext.tsx
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-import { auth, db } from '../firebaseConfig'; // Certifique-se de que o caminho está correto
+import { auth, db } from '../../firebaseConfig'; // Certifique-se de que o caminho está correto
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 
 interface AuthContextType {
@@ -14,9 +14,9 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [user, setUser] = useState<any>(null); // Defina o tipo apropriado
+  const [user, setUser] = useState<any>(null);
   const [nome, setNome] = useState<string>('');
-  const [avatar, setAvatar] = useState<string>('https://grupomapscartaodigital.com.br/img/mps.jpg'); // URL padrão
+  const [avatar, setAvatar] = useState<string>('https://grupomapscartaodigital.com.br/img/mps.jpg');
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -35,7 +35,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
           await setDoc(docRef, {
             nome: nome,
             email: email,
-            avatar: 'https://grupomapscartaodigital.com.br/img/mps.jpg', // URL padrão
+            avatar: 'https://grupomapscartaodigital.com.br/img/mps.jpg',
           });
           setNome(nome);
           setAvatar('https://grupomapscartaodigital.com.br/img/mps.jpg');
@@ -43,7 +43,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       } else {
         setUser(null);
         setNome('');
-        setAvatar('https://grupomapscartaodigital.com.br/img/mps.jpg'); // URL padrão
+        setAvatar('https://grupomapscartaodigital.com.br/img/mps.jpg');
       }
       setLoading(false);
     });

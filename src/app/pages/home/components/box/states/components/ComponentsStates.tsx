@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import './ComponentsStates.css';
 import { 
@@ -8,7 +8,7 @@ import {
   rioGrandeDoNorte, sergipe, distritoFederal, goias, matoGrosso,
   matoGrossoDoSul, espiritoSanto, minasGerais, rioDeJaneiro,
   saoPaulo, parana, rioGrandeDoSul, santaCatarina 
-} from '../components/Bandeiras/all_bandeiras'
+} from './Bandeiras/all_bandeiras'
 
 export const ComponentsStates: React.FC = () => {
   const [selectedRegion, setSelectedRegion] = useState<string>("Norte");
@@ -19,10 +19,10 @@ export const ComponentsStates: React.FC = () => {
   };
 
   return (
-    <Container className="estados-container">
+    <div className="estados-container">
       <Row className="justify-content-center">
         <Col md={10}>
-          <h2 className="region-title">Selecione uma Região</h2>
+          <h2 className="region-title">Estabelecimentos de Todas as Regiões</h2>
           <select
             className="region-select form-select"
             value={selectedRegion}
@@ -86,6 +86,6 @@ export const ComponentsStates: React.FC = () => {
           </ul>
         </Col>
       </Row>
-    </Container>
+    </div>
   );
 };

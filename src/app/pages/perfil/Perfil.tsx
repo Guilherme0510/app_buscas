@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "./perfil.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
-import { useAuth } from "../../context/AuthContext";
+import { useAuth } from "../../shared/context/AuthContext";
 import { db } from "../../firebaseConfig";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 

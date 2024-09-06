@@ -21,6 +21,11 @@ interface Client {
   estado?: string;
   cidade?: string;
   bairro?: string;
+  booking?: string;
+  ifood?: string;
+  site?: string;
+  numero?: string;
+  horario?: string
 }
 
 export const Dash: React.FC = () => {
@@ -113,8 +118,8 @@ export const Dash: React.FC = () => {
     setQuery("");
     setLocationQuery("");
     setSelectedRamo("");
-    setFilteredClients(clients); // Reseta para mostrar todos os clientes
-    setCurrentPage(1); // Volta à primeira página
+    setFilteredClients(clients);
+    setCurrentPage(1); 
   };
 
   const totalPages = Math.ceil(filteredClients.length / itemsPerPage);
@@ -175,6 +180,9 @@ export const Dash: React.FC = () => {
               iconFace={client.facebook}
               iconInsta={client.instagram}
               iconWhats={client.whatsapp}
+              iconIfood={client.ifood}
+              iconBooking={client.booking}
+              iconSite={client.site}
             />
           ))}
         </div>
