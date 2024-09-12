@@ -1,6 +1,8 @@
 /* navbar.css */
 .navbar-custom {
     box-shadow: 3px 3px 15px rgba(0, 0, 0, .5);
+    transition: height 0.5s ease-in-out, background-color 0.5s ease-in-out;
+    height: 60px;
 }
 
 .navbar-custom .navbar-brand {
@@ -21,6 +23,17 @@
 }
 .navbar-custom.scrolled {
     background-color: #222;
+    height: 80px;
+}
+
+@keyframes rolamento{
+    from{
+        height: 60px;
+    }
+
+    to{
+        height: 80px;
+    }
 }
 
 .navbar-custom.scrolled .navbar-toggler{

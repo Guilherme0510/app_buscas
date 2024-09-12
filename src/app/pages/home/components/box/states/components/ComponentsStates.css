@@ -1,17 +1,17 @@
 .estados-container {
     padding-block: 30px;
     text-align: center;
-    background-color: #f2f2f2;
+    background-color: #0056b3;
     margin-bottom: 20px;
     border-radius: 0 0 20px 20px;
-    height: auto; /* Ajuste a altura automaticamente com base no conteúdo */
+    height: auto; 
 }
 
 .region-title {
     margin-bottom: 20px;
     font-size: 1.5rem;
     font-weight: bold;
-    color: #000000;
+    color: #fff;
 }
 
 .state-list {
@@ -22,6 +22,7 @@
     flex-direction: row;
     flex-wrap: wrap; 
     justify-content: center; 
+    
 }
 
 .state-list li {
@@ -31,14 +32,26 @@
     margin: 30px 40px; 
 }
 
+.state-list button{
+    border: none;
+    padding: 0;
+}
+
 .state-list img {
-    max-width: 137px; 
     height: auto;
-    margin-bottom: 5px;
+    width: 137px;
     transition: all .3s ease-in-out;
+    
 }
 
 .state-list img:hover{
     filter: brightness(70%);
-    scale: 1.09;
+    scale: 1.12;
+    padding-bottom: 9px;
+}
+
+li{
+    color: #fff;
+    font-weight: 600;
+    font-size: 17px;
 }

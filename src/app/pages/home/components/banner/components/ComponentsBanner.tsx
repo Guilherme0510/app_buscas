@@ -26,7 +26,7 @@ export const ComponentsBanner: React.FC = () => {
         animate={{ opacity: 1 }} 
         transition={{ duration: 1, delay: 0.5 }}
       >
-        <FontAwesomeIcon className="icon-location" icon={faLocationDot}/>
+        {/* <FontAwesomeIcon className="icon-location" icon={faLocationDot}/> */}
       </motion.div>
     </section>
   );

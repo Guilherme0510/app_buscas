@@ -17,7 +17,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({ searchTerm, selectedOperat
   const isAdmin = (userId === 'QtWNWEPXcTMUPrQQrzYj1JjWJC73'); 
 
   return (
-    <>
+    <div className="search-bar-container">
       <div className="header-list">
         <h1>Lista de Clientes</h1>
       </div>
@@ -46,15 +46,14 @@ export const SearchBar: React.FC<SearchBarProps> = ({ searchTerm, selectedOperat
         <button className="btn btn-primary btn-pesquisa">
           <FontAwesomeIcon icon={faSearch} />
         </button>
-
-        <label htmlFor="sortBy" className="label_sortby text-white">Ordenar por:</label>
+        <label htmlFor="sortBy" className="label_sortby">Ordenar por:</label>
         <select name="sortBy" id="sortBy" className="sortby form-select" onChange={onSortChange}>
-          <option className="opt-sortby" value="">Selecione</option>
-          <option className="opt-sortby" value="alphabetical">Ordem Alfabética</option>
-          <option className="opt-sortby" value="newest">Mais Novo</option>
-          <option className="opt-sortby" value="oldest">Mais Antigo</option>
+          <option value="">Selecione</option>
+          <option value="alphabetical">Ordem Alfabética</option>
+          <option value="newest">Mais Novo</option>
+          <option value="oldest">Mais Antigo</option>
         </select>
       </div>
-    </>
+    </div>
   );
 };

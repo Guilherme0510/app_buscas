@@ -1,0 +1,152 @@
+.container-anuncio {
+    animation: eita;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+/* .container-anuncio:hover{
+    animation: eita .001s infinite linear;
+} */
+
+@keyframes eita {
+    0% {
+        rotate: 0;
+    }
+
+    100% {
+        rotate: 360deg;
+    }
+}
+
+.card {
+    border-radius: 10px;
+    transition: transform 0.3s;
+    width: 390px;
+    height: 350px;
+    margin-top: 50px;
+
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.card-title {
+    font-weight: bold;
+    font-size: 30px;
+}
+
+.card-text {
+    margin-bottom: 15px;
+    font-size: 23px;
+}
+
+.card-body img {
+    width: 100px;
+    height: auto;
+    padding: 20px;
+}
+.card a {
+    width: 150px;
+    scale: 1.1;
+    font-weight: 600;
+}
+
+.box-contact {
+    width: 500px;
+    height: 600px;
+    background: rgba(0, 0, 0, .5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border: 3px double #fff;
+    border-right: none;
+    border-radius: 25px 0 0 25px;
+}
+
+.box-form {
+    width: 500px;
+    height: 600px;
+    background: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: start;
+    border: 3px double #fff;
+    border-left: none;
+    border-radius: 0 25px 25px 0;
+}
+
+.box-contact-infos {
+    padding: 30px;
+    margin: 0 auto;
+    color: #fff;
+    text-align: center;
+}
+
+.box-contact-infos h4 {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+    position: relative;
+    display: inline-block;
+}
+
+.box-contact-infos p {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    font-style: italic;
+    letter-spacing: 0.5px;
+    text-indent: 10px;
+    transition: color 0.3s ease-in-out;
+}
+
+.box-contact-infos hr {
+    border: none;
+    border-top: 3px dashed #fff;
+    margin: 15px 0;
+    width: 100%;
+    margin: 30px auto;
+}
+
+.box-form input{
+    width: 400px;
+    text-align: start;
+}
+
+.box-form input::placeholder{
+    text-align: start;
+}
+
+.box-form label{
+    margin-top: 10px;
+    font-size: 1.5em;
+}
+
+.box-form button{
+    position: absolute;
+    bottom: 0;
+    transform: translateY(115px);
+    right: 34%;
+    scale: 1.2;
+    width: 100px;
+}
+
+@media  (max-width:992px) {
+    .box-contact {
+        border: 2px double #fff;
+        border-radius: 20px;
+    }
+    .box-form{
+        border: 2px double #fff;
+        border-radius: 20px;
+    }
+    .box-form input{
+        width: 200px!important;
+    }
+    .box-form button{
+        transform: translateY(100%);
+    }
+}

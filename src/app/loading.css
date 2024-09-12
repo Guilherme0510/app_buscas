@@ -1,8 +1,0 @@
-.circle-loading {
-    display: flex;
-    flex-direction: column;
-    height: 100vh; /* Ou o tamanho do seu contêiner */
-    justify-content: center; /* Alinha o conteúdo ao topo do contêiner */
-    align-items: center; /* Centraliza horizontalmente */    
-    background-color: #116477
-}

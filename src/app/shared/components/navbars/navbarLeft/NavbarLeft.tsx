@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './components/navbarLeft.css';
-import { useAuth } from '../../../../context/AuthContext';
+import { useAuth } from '../../../context/AuthContext';
 
 export const NavbarLeft: React.FC = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -57,9 +57,6 @@ export const NavbarLeft: React.FC = () => {
                             </Link>
                         </li>
                     </ul>
-                </div>
-                <div className='nav-contato'>
-                    <Link to={'https://wa.link/xhrg72'}>Contato</Link>
                 </div>
             </nav>
         </div>

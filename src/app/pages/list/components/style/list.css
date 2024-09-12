@@ -39,11 +39,12 @@ body {
 }
 
 .client-table {
-    width: 100%;
+    width: 80%;
     border-collapse: separate;
     border-spacing: 0;
     border-radius: 20px;
     overflow: hidden;
+    margin-right: -100px;
 }
 
 .client-table th,
@@ -146,4 +147,34 @@ body {
 
 .opt-sortby {
     padding: 10px;
+}
+
+
+
+@media (max-width:768px){
+    .pesquisa{
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        margin: 0;
+        gap: 10px;
+    }
+    .select-operador, .sortby{
+        margin-right: 0;
+        width: 100%;
+    }
+
+    .barra-pesquisa{
+        border-radius: 10px!important;
+    }
+
+    .btn-pesquisa{
+        width: 60px;
+        border-radius: 10px!important;
+        margin: auto;
+    }
+    .client-table{
+        margin-right: 0;
+    }
+    
 }
