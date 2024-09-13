@@ -10,7 +10,12 @@
 }
 
 .fa-whatsapp{
-  margin-left: -30px;
+  margin-right: 20px;
+}
+
+.link-whats{
+  text-decoration: none;
+  color: #fff;
 }
 
 .footer {
