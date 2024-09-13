@@ -12,7 +12,7 @@ export const SiteNav: React.FC = () => {
 
   return (
     <div>
-      <LinksNav title="App Pesquisas" links={links} />
+      <LinksNav title="G Marketing Digital" links={links} />
     </div>
   );
 };

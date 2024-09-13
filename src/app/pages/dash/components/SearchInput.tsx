@@ -3,9 +3,7 @@ import { Form } from 'react-bootstrap';
 
 interface SearchInputProps {
   query: string;
-  locationQuery: string;
   setQuery: (value: string) => void;
-  setLocationQuery: (value: string) => void;
   selectedRamo: string;
   setSelectedRamo: (value: string) => void;
   ramosOptions: string[];
@@ -14,9 +12,7 @@ interface SearchInputProps {
 
 export const SearchInput: React.FC<SearchInputProps> = ({
   query,
-  locationQuery,
   setQuery,
-  setLocationQuery,
   selectedRamo,
   setSelectedRamo,
   ramosOptions,
@@ -57,22 +53,14 @@ export const SearchInput: React.FC<SearchInputProps> = ({
 
   return (
     <Form className="search">
-      <Form.Group className=" inputs-search">
+      <Form.Group className="inputs-search">
         <Form.Control
           type="text"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          placeholder="Nome ou Ramo"
+          placeholder="Nome, Ramo ou Localização"
           className="input-search"
-          aria-label="Nome ou ramo"
-        />
-        <Form.Control
-          type="text"
-          value={locationQuery}
-          onChange={(e) => setLocationQuery(e.target.value)}
-          placeholder="Estado, Cidade ou Bairro"
-          className="input-search"
-          aria-label="Estado, cidade ou bairro"
+          aria-label="Nome, ramo ou localização"
         />
         <div ref={selectRef} className="custom-select-container">
           <input
@@ -80,7 +68,7 @@ export const SearchInput: React.FC<SearchInputProps> = ({
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             onClick={() => setIsOpen(!isOpen)}
-            placeholder="Selecione um Ramo"
+            placeholder="Selecione uma Categoria"
             className="input-search"
             aria-label="Selecione um ramo"
           />

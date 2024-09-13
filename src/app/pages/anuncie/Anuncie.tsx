@@ -12,21 +12,43 @@ export const Anuncie: React.FC = () => {
       img: `${thirdMedal}`,
       title: "Plano Básico",
       price: "R$ 99,90/mês",
-      description: "Ideal para quem está começando.",
+      description: `<ul>
+                   <li>HOSPEDAGEM EM NOSSA PLATAFORMA.</li>
+                   <li>CARTÃO DIGITAL INTERATIVO</li>
+                   <li>PACK DE 10 IMAGENS PARA POSTAGEM NAS REDES SOCIAIS</li>
+                 </ul>`,
       whatsappLink: "https://wa.me/5511999999999?text=Quero+o+Plano+Básico",
     },
     {
       img: `${secondMedal}`,
       title: "Plano Avançado",
       price: "R$ 199,90/mês",
-      description: "Perfeito para o crescimento.",
+      description: `<ul>
+                   <li>HOSPEDAGEM EM NOSSA PLATAFORMA.</li>
+                   <li>CARTÃO DIGITAL INTERATIVO</li>
+                   <li>PACK DE 10 IMAGENS PARA POSTAGEM NAS REDES SOCIAIS</li>
+                   <li>SUPORTE COM PAGINA GOOGLE </li>
+                   <li>ANÚCIO PATROCINADO NO GOOGLE ADS</li>
+
+                 </ul>`,
+                  
+                 
       whatsappLink: "https://wa.me/5511999999999?text=Quero+o+Plano+Avançado",
     },
     {
       img: `${firstMedal}`,
       title: "Plano Premium",
       price: "R$ 299,90/mês",
-      description: "Para quem quer o melhor.",
+      description: `<ul>
+                   <li>HOSPEDAGEM EM NOSSA PLATAFORMA.</li>
+                   <li>CARTÃO DIGITAL INTERATIVO</li>
+                   <li>PACK DE 10 IMAGENS PARA POSTAGEM NAS REDES SOCIAIS</li>
+                   <li>SUPORTE COM PAGINA GOOGLE </li>
+                   <li>ANÚCIO PATROCINADO NO GOOGLE ADS</li>
+                   <li>DESTAQUE COM BANNER EM VIDEO</li>
+                   <li>CRIAÇÃO DE WEBSITE</li>
+
+                 </ul>`,
       whatsappLink: "https://wa.me/5511999999999?text=Quero+o+Plano+Premium",
     },
   ];
@@ -39,9 +61,9 @@ export const Anuncie: React.FC = () => {
             <PlanCard {...plan} />
           </div>
         ))}
-        <div className="">
+        {/* <div className="">
           <ContactForm />
-        </div>
+        </div> */}
       </div>
     </div>
   );

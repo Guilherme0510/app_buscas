@@ -3,14 +3,12 @@ import { LinksFooter } from './components/LinksFooter';
 
 export const SiteFooter: React.FC = () => {
   const footerLinks = [
-    { label: 'Politica de privacidade', href: '#privacy' },
-    { label: 'Termos de uso', href: '#terms' },
     { label: 'Contato', href: '#contact' },
   ];
 
   return (
     <div>
-      <LinksFooter text="© Desenvolvido por G Maps." links={footerLinks} />
+      <LinksFooter text="© Desenvolvido por G Maps Contact Center LTDA - CNPJ. 40.407.753/0001-30" text_02='08005802766' />
     </div>
   );
 };

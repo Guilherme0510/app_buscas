@@ -17,14 +17,17 @@ export const PlanCard: React.FC<PlanCardProps> = ({
 }) => {
   return (
     <div className="card text-center">
+      <img src={img} alt={title} className="card-img-top" />
       <div className="card-body">
-        <img src={img} alt="" />
         <h5 className="card-title">{title}</h5>
-        <p className="card-text">{description}</p>
+        <div
+          className="card-text"
+          dangerouslySetInnerHTML={{ __html: description }}
+        />
         <h4>{price}</h4>
         <a
           href={whatsappLink}
-          className="btn btn-primary mt-3"
+          className="btn btn-primary bt-anuncie mt-3"
           target="_blank"
           rel="noopener noreferrer"
         >

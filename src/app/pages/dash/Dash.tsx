@@ -4,11 +4,10 @@ import { SearchInput, SearchResult } from "./components";
 import { db } from "../../firebaseConfig";
 import { collection, getDocs } from "firebase/firestore";
 import { CircularProgress } from "@mui/material";
-import maps_icon from "../../assets/images/maps-icon.png";
 import "../../loading.css";
 import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import "./components/styles/Dash.css"
+import "./components/styles/Dash.css";
 
 interface Client {
   nome: string;
@@ -26,14 +25,14 @@ interface Client {
   ifood?: string;
   site?: string;
   numero?: string;
-  horario?: string
+  horario?: string;
+  fotoEntrada?: string;
 }
 
 export const Dash: React.FC = () => {
   const [clients, setClients] = useState<Client[]>([]);
   const [filteredClients, setFilteredClients] = useState<Client[]>([]);
   const [query, setQuery] = useState("");
-  const [locationQuery, setLocationQuery] = useState("");
   const [selectedRamo, setSelectedRamo] = useState("");
   const [ramosOptions, setRamosOptions] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
@@ -70,10 +69,8 @@ export const Dash: React.FC = () => {
   useEffect(() => {
     const queryParams = new URLSearchParams(location.search);
     const query = queryParams.get("query") || "";
-    const locationQuery = queryParams.get("location") || "";
 
     setQuery(query);
-    setLocationQuery(locationQuery);
   }, [location.search]);
 
   useEffect(() => {
@@ -87,22 +84,16 @@ export const Dash: React.FC = () => {
 
     const handleSearch = () => {
       const lowerQuery = normalizeString(query);
-      const lowerLocationQuery = normalizeString(locationQuery);
       const lowerSelectedRamo = normalizeString(selectedRamo);
 
       const filtered = clients.filter(
         (client) =>
           (normalizeString(client.nome || "").includes(lowerQuery) ||
-            normalizeString(client.ramo || "").includes(lowerQuery)) &&
-          (lowerLocationQuery
-            ? normalizeString(client.estado || "").includes(
-                lowerLocationQuery
-              ) ||
-              normalizeString(client.cidade || "").includes(
-                lowerLocationQuery
-              ) ||
-              normalizeString(client.bairro || "").includes(lowerLocationQuery)
-            : true) &&
+            normalizeString(client.ramo || "").includes(lowerQuery) ||
+            normalizeString(client.estado || "").includes(lowerQuery) ||
+            normalizeString(client.cidade || "").includes(lowerQuery) ||
+            normalizeString(client.bairro || "").includes(lowerQuery) || 
+            normalizeString(client.endereco || "").includes(lowerQuery)) &&
           (lowerSelectedRamo
             ? normalizeString(client.ramo || "").includes(lowerSelectedRamo)
             : true)
@@ -113,11 +104,10 @@ export const Dash: React.FC = () => {
     };
 
     handleSearch();
-  }, [query, locationQuery, selectedRamo, clients]);
+  }, [query, selectedRamo, clients]);
 
   const handleClearSearch = () => {
     setQuery("");
-    setLocationQuery("");
     setSelectedRamo("");
     setFilteredClients(clients);
     setCurrentPage(1); 
@@ -149,9 +139,9 @@ export const Dash: React.FC = () => {
       <div className="text-center header-search">
         <div className="overlay">
           <div className="title-dash">
-            <h1 className="display-4">Encontre Seu Cliente</h1>
+            <h1 className="display-4">Explore o centro de São Paulo</h1>
             <p className="lead">
-              Pesquise e descubra clientes interessantes ao redor do Brasil.
+            Tudo que você procura em um único Lugar!
             </p>
           </div>
         </div>
@@ -159,9 +149,7 @@ export const Dash: React.FC = () => {
       <div className="container section-result">
         <SearchInput
           query={query}
-          locationQuery={locationQuery}
           setQuery={setQuery}
-          setLocationQuery={setLocationQuery}
           selectedRamo={selectedRamo}
           setSelectedRamo={setSelectedRamo}
           ramosOptions={ramosOptions}
@@ -176,7 +164,6 @@ export const Dash: React.FC = () => {
               subtitle={client.ramo}
               description={client.descricao || "Descrição não disponível"}
               mapUrl={client.mapUrl || ""}
-              mapsIcon={maps_icon}
               endereco={client.endereco}
               iconFace={client.facebook}
               iconInsta={client.instagram}
@@ -184,6 +171,9 @@ export const Dash: React.FC = () => {
               iconIfood={client.ifood}
               iconBooking={client.booking}
               iconSite={client.site}
+              fotoEntrada={client.fotoEntrada}
+              numero={client.numero}
+
             />
           ))}
         </div>

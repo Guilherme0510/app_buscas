@@ -12,7 +12,6 @@ interface NavbarProps {
 }
 
 export const LinksNav: React.FC<NavbarProps> = ({ title, links }) => {
-
     const [scrolled, setScrolled] = useState(false);
 
     const handleScroll = () => {
@@ -23,10 +22,13 @@ export const LinksNav: React.FC<NavbarProps> = ({ title, links }) => {
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
+
     return (
         <Navbar className={`navbar-custom fixed-top ${scrolled ? 'scrolled' : ''}`} expand="lg">
-            <Container>
-                <Navbar.Brand href="/home">{title}</Navbar.Brand>
+            <Container className="bg-navbar">
+                <Navbar.Brand href="/home">
+                    <img src="../../../../../logo.jpg" alt="Logo" className="logo-navbar" />
+                </Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="ms-auto">

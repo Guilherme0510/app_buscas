@@ -1,18 +1,10 @@
-/* src/components/BackgroundImage.css */
-.background-image {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -2; 
-    overflow: hidden;
-  }
-  
-  .background-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: brightness(75%);
-  }
-  
+.background-video {
+  position: fixed; /* Fixa o vídeo na tela */
+  top: 0;
+  left: 0;
+  width: 100vw; /* Largura total da tela */
+  height: 100vh; /* Altura total da tela */
+  object-fit: cover; /* Faz o vídeo cobrir toda a área sem distorcer */
+  z-index: -2; /* Garante que o vídeo fique atrás dos outros elementos */
+  /* filter: brightness(0.5); */
+}

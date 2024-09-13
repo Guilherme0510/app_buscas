@@ -1,113 +1,175 @@
 .banner-add {
-    background: linear-gradient(145deg, #1297c8 55%, #ace0de 55%);
-    height: 225vh;
-    padding: 20px;
-    justify-content: center;
-    align-items: center;
-    align-content: center;
-    display: flex;
+  background: linear-gradient(145deg, #1297c8 55%, #ace0de 55%);
+  height: auto;
+  padding: 20px;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  display: flex;
 }
 
 .add-content-container {
-    width: 800px;
-    padding: 20px;
-    background: rgba(0, 0, 0, 0.2);
-    border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    color: #f0f0f0;
-    animation: fadeIn 0.8s ease-in-out;
+  width: 800px;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  color: #f0f0f0;
+  animation: fadeIn 0.8s ease-in-out;
 }
 
 .form-title {
-    text-align: center;
-    font-size: 24px;
-    font-weight: bold;
-    color: #f0f0f0;
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  color: #f0f0f0;
 }
 
 .add-form {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .form-group {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    animation: slideInUp 0.5s ease-in-out;
-    padding: 5px 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  animation: slideInUp 0.5s ease-in-out;
+  padding: 5px 12px;
 }
 
 .form-group label {
-    color: #f0f0f0;
+  color: #f0f0f0;
 }
 
 .form-control {
-    padding: 10px;
-    border: none;
-    border-radius: 8px;
-    transition: all 0.3s ease;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  transition: all 0.3s ease;
 }
 
 .form-control:focus {
-    outline: none;
+  outline: none;
 }
 
 .map-placeholder {
-    cursor: pointer;
-    text-align: center;
-    margin-bottom: 20px;
-    background-color: #2c3c3c;
-    padding: 10px;
-    border-radius: 8px;
-    transition: background-color 0.3s ease;
+  cursor: pointer;
+  text-align: center;
+  margin-bottom: 20px;
+  background-color: #2c3c3c;
+  padding: 10px;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
 }
 
 .map-placeholder:hover {
-    background-color: #3c5c5c;
+  background-color: #3c5c5c;
 }
 
 .map-iframe {
-    width: 100%;
-    height: 120px;
-    border: none;
-    border-radius: 8px;
-    margin-bottom: 10px;
+  width: 100%;
+  height: 120px;
+  border: none;
+  border-radius: 8px;
+  margin-bottom: 10px;
 }
 
 .btn-submit {
-    padding: 10px;
-    border: none;
-    border-radius: 8px;
-    background-color: #4884ab;
-    color: #f0f0f0;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  background-color: #4884ab;
+  color: #f0f0f0;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .btn-submit:hover {
-    background-color: #3a5c7c;
+  background-color: #3a5c7c;
 }
 
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
+.form-group {
+  margin-bottom: 1rem;
+}
 
-    to {
-        opacity: 1;
-    }
+.input-img label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 24rem;
+  height: 18rem;
+  border-width: 2px;
+  border-style: dashed;
+  border-color: #d1d5db;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  background-color: #ffffff;
+  transition: background-color 0.2s ease;
+}
+
+.input-img label:hover {
+  background-color: #f9fafb;
+}
+
+.input-img .flex {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: 1rem;
+}
+
+.input-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0.5rem;
+}
+
+.input-img #upload-icon-verso {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #9ca3af;
+}
+
+.input-img #upload-icon-verso svg {
+  height: 3rem;
+  width: 3rem;
+}
+
+.input-img #upload-icon-verso p {
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+  color: #4b5563;
+}
+
+
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes slideInUp {
-    from {
-        transform: translateY(20px);
-        opacity: 0;
-    }
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
 
-    to {
-        transform: translateY(0);
-        opacity: 1;
-    }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }

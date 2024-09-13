@@ -1,35 +1,25 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
+import './css.css'
 
-interface FooterLink {
-  label: string;
-  href: string;
-}
 
 interface FooterProps {
   text: string;
-  links: FooterLink[];
+  text_02: string;
 }
 
-export const LinksFooter: React.FC<FooterProps> = ({ text, links }) => {
+export const LinksFooter: React.FC<FooterProps> = ({ text, text_02 }) => {
   return (
     <footer className="bg-dark text-light py-4">
-      <Container>
+      <Container className='footer'>
         <Row>
           <Col md={6}>
-            <p className="mb-0">{text}</p>
+            <small className="mb-0">{text}</small>
           </Col>
           <Col md={6}>
-            <ul className="list-inline text-md-end mb-0">
-              {links.map((link, index) => (
-                <li key={index} className="list-inline-item">
-                  <a href={link.href} className="text-light">
-                    {link.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
+            <a className="link-footer mb-0 text-center d-flex justify-content-center mx-auto" href='tel:08005802766'>Anuncie Conosco: {text_02}</a>
           </Col>
+          
         </Row>
       </Container>
     </footer>

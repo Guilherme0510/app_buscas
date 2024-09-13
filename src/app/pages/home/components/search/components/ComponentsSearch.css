@@ -1,50 +1,109 @@
+/* Container da cidade e banner */
 .city {
-    height: 20vh;
+    height: 30vh;
     background-color: #0056b3;
-    border-radius: 20px 20px 0 0;
+    border-radius: 20px;
     display: flex;
-    align-items: center;
+    flex-direction: column; /* Alinha o banner e o formulário em coluna */
     justify-content: center;
+    align-items: center;
+    position: relative;
 }
 
+/* Contêiner do banner */
+.banner-content {
+    text-align: center;
+    color: #ffffff;
+    margin-bottom: 50px;
+}
+
+/* Texto do banner */
+.info-banner {
+    margin-bottom: 1rem; /* Espaço entre o banner e o formulário */
+}
+
+.info-banner h1 {
+    font-size: 55px;
+    font-weight: 650;
+}
+
+.info-banner p {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+/* Formulário de busca */
 .search-form {
     display: flex;
-    justify-content: space-between;
+    flex-direction: row; /* Alinha os itens na horizontal */
     align-items: center;
+    width: 100%; /* Ocupa toda a largura disponível */
+    margin-inline: 20px; /* Centraliza o formulário horizontalmente */
+    justify-content: center;
+    margin-bottom: 40px;
 }
 
 .search-input {
     flex: 1;
-    margin-right: 1rem;
-    width: 450px;
+    margin-right: 10px; /* Espaço entre os campos */
 }
 
-.search-input #search1 {
-    width: 310px;
+.search-input input {
+    z-index: 999;
+    width: 300px; /* Ocupa toda a largura disponível dentro do .search-input */
 }
 
 .search-button {
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 
+/* Estilos responsivos */
 @media screen and (max-width: 992px) {
-    .search-input {
-        display: flex;
-        width: 300px;
+    .city{
+        height: 45vh;
     }
 
-    .search-form {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
+    .city h1{
+        font-size: 30px;
+    }
+    .search-input {
+        max-width: 100%; /* Ajusta a largura máxima para telas menores */
     }
 
     .search-button {
         width: 50px;
         height: 50px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        margin:auto;
     }
+
+    .search-form {
+        flex-direction: column; /* Muda para coluna em telas menores */
+        gap: 10px; /* Espaço entre os campos e o botão */
+    }
+}
+
+/* Seção do banner */
+.banner-section {
+    position: relative;
+    height: 40vh;
+}
+
+.divider-box {
+    position: relative;
+    bottom: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    height: 200px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon-location {
+    font-size: 90px;
+    color: #fff;
 }

@@ -1,10 +1,10 @@
-import './BackgroundImage.css';
-import img_body from '../../../assets/images/header-search.avif'
+import "./BackgroundImage.css";
 
 const BackgroundImage = () => (
-  <div className="background-image">
-    <img src={img_body} alt="Background" />
-  </div>
+  <video className="background-video" autoPlay loop muted>
+    <source src="../../../../../../../videos/videoplayback.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
 );
 
 export default BackgroundImage;

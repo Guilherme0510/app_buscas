@@ -5,7 +5,7 @@ export const Box: React.FC = () => {
     return (
         <div className="container box-container">
             <About />
-            <States />
+            {/* <States /> */}
         </div>
     )
 }

@@ -1,31 +1,22 @@
 .container-anuncio {
-    animation: eita;
     justify-content: center;
     align-items: center;
     display: flex;
+    height: 100vh;
 }
 
-/* .container-anuncio:hover{
-    animation: eita .001s infinite linear;
-} */
-
-@keyframes eita {
-    0% {
-        rotate: 0;
-    }
-
-    100% {
-        rotate: 360deg;
-    }
-}
 
 .card {
+    display: flex;
+    flex-direction: column; /* Ajuste para empilhar o conteúdo verticalmente */
+    
+    align-items: center;
     border-radius: 10px;
     transition: transform 0.3s;
     width: 390px;
-    height: 350px;
+    height: 600px; /* Ajuste a altura para garantir que o card tenha espaço suficiente */
     margin-top: 50px;
-
+    position: relative; /* Adicione para posicionar o botão corretamente */
 }
 
 .card:hover {
@@ -37,12 +28,28 @@
     font-size: 30px;
 }
 
-.card-text {
-    margin-bottom: 15px;
-    font-size: 23px;
+.card-text ul{
+    margin-top: 50px;
 }
 
-.card-body img {
+.card-body h4{
+    position: absolute;
+    bottom: 30px;
+    left: 32%;
+
+}
+
+.card-text  li{
+    font-size: 16px;
+}
+
+.card .bt-anuncie{
+    position: absolute;
+    bottom: -20px;
+    transform: translateX(-40%);
+}
+
+.card img {
     width: 100px;
     height: auto;
     padding: 20px;
@@ -86,6 +93,17 @@
     color: #fff;
     text-align: center;
 }
+.card-text ul {
+    list-style: none;
+    padding-left: 20px; 
+    color: #000; 
+}
+
+.card-text li {
+    list-style: none;
+    margin-bottom: 10px; 
+    color: #434343; 
+}
 
 .box-contact-infos h4 {
     font-size: 1.2rem;
@@ -128,12 +146,10 @@
 .box-form button{
     position: absolute;
     bottom: 0;
-    transform: translateY(115px);
     right: 34%;
     scale: 1.2;
     width: 100px;
 }
-
 @media  (max-width:992px) {
     .box-contact {
         border: 2px double #fff;
