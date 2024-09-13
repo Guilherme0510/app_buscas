@@ -13,12 +13,16 @@ export const LinksFooter: React.FC<FooterProps> = ({ text, text_02 }) => {
     <footer className="bg-dark text-light py-4">
       <Container className='footer'>
         <Row>
-          <Col md={6}>
+          <Col md={7}>
             <small className="mb-0">{text}</small>
           </Col>
-          <Col md={6}>
-            <a className="link-footer mb-0 text-center d-flex justify-content-center mx-auto" href='tel:08005802766'>Anuncie Conosco: {text_02}</a>
+          <Col md={3}>
+            <a className="link-footer mb-0 text-center d-flex justify-content-center mx-auto" href='tel:0800 580 2766'>Anuncie Conosco: {text_02}</a> 
           </Col>
+          <Col md={1}>
+            <a className="" href='https://bit.ly/GUIACENTROSP'><i className="text-white fa-brands fa-whatsapp"></i></a>
+          </Col>
+
           
         </Row>
       </Container>
