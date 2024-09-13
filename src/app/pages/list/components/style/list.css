@@ -16,7 +16,11 @@ body {
     margin-block: 40px;
     color: #fff;
 }
-
+.table {
+    margin-left: 300px;
+    width: 70%;
+    overflow-x: auto;
+}
 .pesquisa {
     display: flex;
     justify-content: flex-end;
@@ -39,7 +43,7 @@ body {
 }
 
 .client-table {
-    width: 80%;
+    width: 100%;
     border-collapse: separate;
     border-spacing: 0;
     border-radius: 20px;
@@ -62,7 +66,6 @@ body {
     background-color: #282851;
 
 }
-
 
 .client-table tr:hover {
     background-color: #2f2f5b;
@@ -148,8 +151,6 @@ body {
 .opt-sortby {
     padding: 10px;
 }
-
-
 
 @media (max-width:768px){
     .pesquisa{
