@@ -1,7 +1,7 @@
 import React from "react";
-import { Container } from "react-bootstrap";
+// import { Container } from "react-bootstrap";
 import './ComponentsBanner.css';
-import { motion } from 'framer-motion';
+// import { motion } from 'framer-motion';
 
 export const ComponentsBanner: React.FC = () => {
   return (

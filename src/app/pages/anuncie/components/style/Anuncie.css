@@ -2,19 +2,18 @@
     justify-content: center;
     align-items: center;
     display: flex;
-    height: 100vh;
+    height: auto;
 }
 
 
 .card {
     display: flex;
     flex-direction: column; /* Ajuste para empilhar o conteúdo verticalmente */
-    
     align-items: center;
     border-radius: 10px;
     transition: transform 0.3s;
     width: 390px;
-    height: 600px; /* Ajuste a altura para garantir que o card tenha espaço suficiente */
+    height: 500px; /* Ajuste a altura para garantir que o card tenha espaço suficiente */
     margin-top: 50px;
     position: relative; /* Adicione para posicionar o botão corretamente */
 }
@@ -25,22 +24,22 @@
 
 .card-title {
     font-weight: bold;
-    font-size: 30px;
+    font-size: 20px;
 }
 
 .card-text ul{
-    margin-top: 50px;
+    margin-top: 20px;
 }
 
 .card-body h4{
     position: absolute;
     bottom: 30px;
     left: 32%;
-
+    font-size: 20px;
 }
 
 .card-text  li{
-    font-size: 16px;
+    font-size: 15px;
 }
 
 .card .bt-anuncie{
@@ -106,14 +105,14 @@
 }
 
 .box-contact-infos h4 {
-    font-size: 1.2rem;
+    font-size: 0.8rem;
     margin-bottom: 5px;
     position: relative;
     display: inline-block;
 }
 
 .box-contact-infos p {
-    font-size: 1.5rem;
+    font-size: 1rem;
     margin-bottom: 20px;
     font-style: italic;
     letter-spacing: 0.5px;
@@ -145,7 +144,7 @@
 
 .box-form button{
     position: absolute;
-    bottom: 0;
+    bottom: -559px;
     right: 34%;
     scale: 1.2;
     width: 100px;

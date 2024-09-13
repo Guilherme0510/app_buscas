@@ -48,20 +48,20 @@ export const SearchResult: React.FC<SearchResultProps> = ({
     iconFace || iconInsta || iconWhats || iconIfood || iconBooking || iconSite;
 
   // Função para verificar se está aberto ou fechado
-  const isOpen = () => {
-    const currentDate = new Date();
-    const dayOfWeek = currentDate.getDay(); // 0 (Domingo) a 6 (Sábado)
-    const currentHour = currentDate.getHours();
+  // const isOpen = () => {
+  //   const currentDate = new Date();
+  //   const dayOfWeek = currentDate.getDay(); // 0 (Domingo) a 6 (Sábado)
+  //   const currentHour = currentDate.getHours();
 
-    const openingHour = 8; // 08:00
-    const closingHour = 18; // 18:00
+  //   const openingHour = 8; // 08:00
+  //   const closingHour = 18; // 18:00
 
-    // Verificar se é de segunda a sexta (1 a 5) e se o horário está entre 08:00 e 18:00
-    if (dayOfWeek >= 1 && dayOfWeek <= 5 && currentHour >= openingHour && currentHour < closingHour) {
-      return true;
-    }
-    return false;
-  };
+  //   // Verificar se é de segunda a sexta (1 a 5) e se o horário está entre 08:00 e 18:00
+  //   if (dayOfWeek >= 1 && dayOfWeek <= 5 && currentHour >= openingHour && currentHour < closingHour) {
+  //     return true;
+  //   }
+  //   return false;
+  // };
 
   const copyText = async () => {
     try {
@@ -90,9 +90,7 @@ export const SearchResult: React.FC<SearchResultProps> = ({
         <p className="result-description">
   <small>
     <FontAwesomeIcon icon={faClock} className="icon_clock" />
-    <span id="" className={isOpen() ? "status-open" : "status-closed"}>
-      {isOpen() ? "Aberto" : "Fechado"}
-    </span>{" "}
+
     Seg - Sex: 08:00 - 18:00
   </small>
 </p>

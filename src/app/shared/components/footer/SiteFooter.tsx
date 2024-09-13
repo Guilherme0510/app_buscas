@@ -2,9 +2,9 @@ import React from 'react';
 import { LinksFooter } from './components/LinksFooter';
 
 export const SiteFooter: React.FC = () => {
-  const footerLinks = [
-    { label: 'Contato', href: '#contact' },
-  ];
+  // const footerLinks = [
+  //   { label: 'Contato', href: '#contact' },
+  // ];
 
   return (
     <div>

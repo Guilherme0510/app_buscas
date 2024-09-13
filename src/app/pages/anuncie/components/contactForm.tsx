@@ -34,7 +34,7 @@ export const ContactForm: React.FC = () => {
           <div className="col-md-6 box-contact">
             <div className="box-contact-infos">
               <h3>Nome</h3>
-              <p>Pesquisas</p>
+              <p>Guia Centro SP</p>
               <hr />
               <h3>Telefone</h3>
               <p>+55 (70) 7070-7070</p>

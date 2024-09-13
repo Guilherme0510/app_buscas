@@ -61,9 +61,9 @@ export const Anuncie: React.FC = () => {
             <PlanCard {...plan} />
           </div>
         ))}
-        {/* <div className="">
+        <div className="">
           <ContactForm />
-        </div> */}
+        </div>
       </div>
     </div>
   );
