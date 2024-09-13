@@ -6,34 +6,29 @@ interface PlanCardProps {
   description: string;
   whatsappLink: string;
   img: string;
+  oldPrice: string;
 }
 
 export const PlanCard: React.FC<PlanCardProps> = ({
   title,
   price,
+  oldPrice,
   description,
   whatsappLink,
   img
 }) => {
   return (
-    <div className="card text-center">
-      <img src={img} alt={title} className="card-img-top" />
-      <div className="card-body">
-        <h5 className="card-title">{title}</h5>
-        <div
-          className="card-text"
-          dangerouslySetInnerHTML={{ __html: description }}
-        />
-        <h4>{price}</h4>
-        <a
-          href={whatsappLink}
-          className="btn btn-primary bt-anuncie mt-3"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Tenho interesse
-        </a>
+    <div className="card">
+    <img src={img} alt={title} />
+    <div className="card-body">
+      <h4 className="card-title">{title}</h4>
+      <div className="card-price">
+        <span className="old-price">{oldPrice}</span>
+        <span className="new-price">{price}</span>
       </div>
+      <div className="card-text" dangerouslySetInnerHTML={{ __html: description }}></div>
+      <a href={whatsappLink} className="btn btn-primary bt-anuncie">Assinar</a>
     </div>
+  </div>
   );
 };

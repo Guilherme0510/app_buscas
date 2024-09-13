@@ -105,6 +105,7 @@ export const ClientTable: React.FC<ClientTableProps> = ({ clients, onDeleteClien
       {selectedRows.size > 0 && (
         <DeleteSelectedButton onDelete={handleDeleteSelected} />
       )}
+      <div className="table-responsive">
       <table className="table client-table">
         <thead>
           <tr>
@@ -195,6 +196,7 @@ export const ClientTable: React.FC<ClientTableProps> = ({ clients, onDeleteClien
           )}
         </tbody>
       </table>
+      </div>
     </>
   );
 };

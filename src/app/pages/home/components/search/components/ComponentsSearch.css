@@ -62,11 +62,14 @@
 /* Estilos responsivos */
 @media screen and (max-width: 992px) {
     .city{
-        height: 45vh;
+        height: 50vh;
     }
 
     .city h1{
         font-size: 30px;
+    }
+    .banner-content, .info-banner{
+        margin-bottom: 0!important;
     }
     .search-input {
         max-width: 100%; /* Ajusta a largura máxima para telas menores */
@@ -88,19 +91,6 @@
 .banner-section {
     position: relative;
     height: 40vh;
-}
-
-.divider-box {
-    position: relative;
-    bottom: -25px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 200px;
-    height: 200px;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 .icon-location {

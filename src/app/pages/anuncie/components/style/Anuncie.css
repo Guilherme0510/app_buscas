@@ -3,19 +3,22 @@
     align-items: center;
     display: flex;
     height: auto;
+    flex-wrap: wrap;
+    padding: 20px;
 }
-
 
 .card {
     display: flex;
-    flex-direction: column; /* Ajuste para empilhar o conteúdo verticalmente */
+    flex-direction: column;
     align-items: center;
     border-radius: 10px;
     transition: transform 0.3s;
-    width: 390px;
-    height: 500px; /* Ajuste a altura para garantir que o card tenha espaço suficiente */
-    margin-top: 50px;
-    position: relative; /* Adicione para posicionar o botão corretamente */
+    width: 100%;
+    max-width: 390px;
+    height: 550px;
+    margin: 20px;
+    position: relative;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .card:hover {
@@ -27,25 +30,30 @@
     font-size: 20px;
 }
 
-.card-text ul{
-    margin-top: 20px;
+.card-body {
+    padding: 20px;
+    text-align: center;
+    flex-grow: 1;
 }
 
-.card-body h4{
-    position: absolute;
-    bottom: 30px;
-    left: 32%;
-    font-size: 20px;
+.card-price {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px;
 }
 
-.card-text  li{
-    font-size: 15px;
+.old-price {
+    text-decoration: line-through;
+    color: red;
+    font-size: 1.2em;
+    margin-bottom: 5px;
 }
 
-.card .bt-anuncie{
-    position: absolute;
-    bottom: -20px;
-    transform: translateX(-40%);
+.new-price {
+    font-weight: bold;
+    font-size: 1.5em;
+    color: green;
 }
 
 .card img {
@@ -53,10 +61,29 @@
     height: auto;
     padding: 20px;
 }
-.card a {
-    width: 150px;
-    scale: 1.1;
-    font-weight: 600;
+
+.card-text ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.card-text li {
+    margin-bottom: 10px;
+    color: #434343;
+}
+
+.card .bt-anuncie {
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px; /* Largura menor para o botão */
+    padding: 8px;
+    background-color: #007bff;
+    color: white;
+    text-align: center;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .box-contact {
@@ -69,7 +96,13 @@
     flex-direction: column;
     border: 3px double #fff;
     border-right: none;
+    color: #fff;
     border-radius: 25px 0 0 25px;
+}
+
+.box-contact-infos {
+    margin: auto;
+    text-align: center;
 }
 
 .box-form {
@@ -84,84 +117,68 @@
     border: 3px double #fff;
     border-left: none;
     border-radius: 0 25px 25px 0;
+    position: relative;
+    padding: 20px;
 }
 
-.box-contact-infos {
-    padding: 30px;
-    margin: 0 auto;
-    color: #fff;
+.box-form input {
+    width: 300px;
+    margin-bottom: 15px;
+    padding: 10px;
+    font-size: 1em;
+}
+
+.box-form button {
+    width: 120px; /* Largura menor do botão */
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 8px;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
     text-align: center;
 }
-.card-text ul {
-    list-style: none;
-    padding-left: 20px; 
-    color: #000; 
-}
 
-.card-text li {
-    list-style: none;
-    margin-bottom: 10px; 
-    color: #434343; 
-}
-
-.box-contact-infos h4 {
-    font-size: 0.8rem;
-    margin-bottom: 5px;
-    position: relative;
-    display: inline-block;
-}
-
-.box-contact-infos p {
-    font-size: 1rem;
-    margin-bottom: 20px;
-    font-style: italic;
-    letter-spacing: 0.5px;
-    text-indent: 10px;
-    transition: color 0.3s ease-in-out;
-}
-
-.box-contact-infos hr {
-    border: none;
-    border-top: 3px dashed #fff;
-    margin: 15px 0;
-    width: 100%;
-    margin: 30px auto;
-}
-
-.box-form input{
-    width: 400px;
-    text-align: start;
-}
-
-.box-form input::placeholder{
-    text-align: start;
-}
-
-.box-form label{
-    margin-top: 10px;
-    font-size: 1.5em;
-}
-
-.box-form button{
-    position: absolute;
-    bottom: -559px;
-    right: 34%;
-    scale: 1.2;
-    width: 100px;
-}
-@media  (max-width:992px) {
-    .box-contact {
-        border: 2px double #fff;
-        border-radius: 20px;
+/* Responsividade para telas médias (tablets) */
+@media (max-width: 992px) {
+    .card {
+        width: 90%;
+        max-width: 100%;
+        margin: 10px auto;
     }
-    .box-form{
-        border: 2px double #fff;
-        border-radius: 20px;
+
+    .box-form input {
+        width: 90%;
     }
-    .box-form input{
-        width: 200px!important;
+
+    .box-form button {
+        right: 50%;
+        transform: translateX(50%);
     }
-    .box-form button{
-        transform: translateY(100%);
+}
+
+/* Responsividade para telas pequenas (celulares) */
+@media (max-width: 576px) {
+    .card,
+    .box-contact,
+    .box-form {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .card img {
+        width: 80px;
+        padding: 15px;
+    }
+
+    .box-form input {
+        width: 100%;
+    }
+
+    .box-form button {
+        width: 100px; /* Ajuste do tamanho do botão para telas pequenas */
+        bottom: 20px;
     }
 }
