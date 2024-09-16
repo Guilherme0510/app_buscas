@@ -150,8 +150,6 @@
   color: #4b5563;
 }
 
-
-
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -171,5 +169,20 @@
   to {
     transform: translateY(0);
     opacity: 1;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .add-content-container {
+    width: 95%;
+  }
+  .map-placeholder {
+    border-radius: 10px;
+  }
+  .map-placeholder img {
+    width: 250px;
+    border-radius: 10px;
+    height: 200px;
+    object-fit: cover;
   }
 }

@@ -274,8 +274,8 @@
     }
 
     .search-result iframe, .map-container img {
-        width: 200px!important;
-        height: 200px!important;
+        width: 150px!important;
+        height: 150px!important;
         padding: 0;
         margin-top: 20px;
     }

@@ -213,7 +213,7 @@ export const Add: React.FC = () => {
                   className="form-control"
                   placeholder="Digite o instagram da empresa"
                 />
-              </div>
+              </div>  
               <div className="form-group col-md-6">
                 <label htmlFor="facebook">Facebook</label>
                 <input

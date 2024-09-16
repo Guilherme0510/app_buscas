@@ -1,6 +1,5 @@
 body {
     background: linear-gradient(130deg, #1297c8 60%, #ace0de 50%) ;
-
     background-repeat: no-repeat;
 }
 
@@ -17,7 +16,7 @@ body {
     color: #fff;
 }
 .table {
-    margin-left: 300px;
+    margin-left: 200px;
     width: 70%;
     overflow-x: auto;
 }
@@ -174,8 +173,13 @@ body {
         border-radius: 10px!important;
         margin: auto;
     }
-    /* .client-table{
-        margin-right: 0;
-    } */
+    .table{
+        width: 100%;
+        margin-left: 0;
+        overflow-x: auto;
+    }
+    .client-list-container{
+        overflow-y: auto;
+    }
     
 }

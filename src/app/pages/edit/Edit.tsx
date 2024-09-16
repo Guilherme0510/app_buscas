@@ -378,7 +378,6 @@ export const Edit: React.FC = () => {
                       name="img-input"
                       type="file"
                       accept="image/*"
-                      capture="environment"
                       className="d-none"
                       onChange={handleImageChange}
                     />
