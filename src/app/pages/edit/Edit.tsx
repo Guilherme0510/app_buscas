@@ -29,7 +29,6 @@ export const Edit: React.FC = () => {
             setClientData(docSnap.data());
             setMapUrl(docSnap.data().mapUrl || "");
             setMapVisible(!!docSnap.data().mapUrl);
-            // Atualiza o preview da imagem se estiver disponível
             if (docSnap.data().fotoEntrada) {
               setFotoPreview(docSnap.data().fotoEntrada);
             }
@@ -77,7 +76,7 @@ export const Edit: React.FC = () => {
         await updateDoc(docRef, {
           ...clientData,
           mapUrl,
-          fotoEntrada: fotoPreview, // Atualiza a URL da imagem no banco de dados
+          fotoEntrada: fotoPreview, 
           updatedBy: nome,
           updatedAt: new Date().toISOString(),
         });
@@ -85,7 +84,6 @@ export const Edit: React.FC = () => {
         setFormSubmitted(true);
         setTimeout(() => setFormSubmitted(false), 3000);
 
-        // Limpa o formulário e o preview da imagem
         setClientData(null);
         setFotoEntrada(null);
         setFotoPreview("");
@@ -106,9 +104,9 @@ export const Edit: React.FC = () => {
       setFotoEntrada(file);
       const reader = new FileReader();
       reader.onloadend = () => {
-        setFotoPreview(reader.result as string); // Atualiza a URL da imagem para visualização
+        setFotoPreview(reader.result as string);
       };
-      reader.readAsDataURL(file); // Converte o arquivo em URL para visualização
+      reader.readAsDataURL(file); 
     }
   };
 

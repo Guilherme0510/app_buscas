@@ -11,20 +11,20 @@ export const Anuncie: React.FC = () => {
     {
       img: `${thirdMedal}`,
       title: "Plano Básico",
-      price: "R$ 99,90/mês", // Preço com desconto
-      oldPrice: "R$ 199,90/mês", // Preço antigo
+      price: "R$ 99,90/mês", 
+      oldPrice: "R$ 199,90/mês", 
       description: `<ul>
                    <li>HOSPEDAGEM EM NOSSA PLATAFORMA.</li>
                    <li>CARTÃO DIGITAL INTERATIVO</li>
                    <li>PACK DE 10 IMAGENS PARA POSTAGEM NAS REDES SOCIAIS</li>
                  </ul>`,
-      whatsappLink: "https://wa.me/5511999999999?text=Quero+o+Plano+Básico",
+      whatsappLink: "https://wa.link/b9dy8u",
     },
     {
       img: `${secondMedal}`,
       title: "Plano Avançado",
       price: "R$ 199,90/mês",
-      oldPrice: "R$ 299,90/mês", // Preço antigo
+      oldPrice: "R$ 299,90/mês", 
       description: `<ul>
                    <li>HOSPEDAGEM EM NOSSA PLATAFORMA.</li>
                    <li>CARTÃO DIGITAL INTERATIVO</li>
@@ -32,13 +32,13 @@ export const Anuncie: React.FC = () => {
                    <li>SUPORTE COM PAGINA GOOGLE </li>
                    <li>ANÚCIO PATROCINADO NO GOOGLE ADS</li>
                  </ul>`,
-      whatsappLink: "https://wa.me/5511999999999?text=Quero+o+Plano+Avançado",
+      whatsappLink: "https://wa.link/uvkt5x",
     },
     {
       img: `${firstMedal}`,
       title: "Plano Premium",
       price: "R$ 299,90/mês",
-      oldPrice: "R$599,90/Mês", // Preço antigo
+      oldPrice: "R$599,90/Mês", 
       description: `<ul>
                    <li>HOSPEDAGEM EM NOSSA PLATAFORMA.</li>
                    <li>CARTÃO DIGITAL INTERATIVO</li>
@@ -48,7 +48,7 @@ export const Anuncie: React.FC = () => {
                    <li>DESTAQUE COM BANNER EM VIDEO</li>
                    <li>CRIAÇÃO DE WEBSITE</li>
                  </ul>`,
-      whatsappLink: "https://wa.me/5511999999999?text=Quero+o+Plano+Premium",
+      whatsappLink: "https://wa.link/h404na",
     },
   ];
 

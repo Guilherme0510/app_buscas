@@ -12,8 +12,8 @@ export const Add: React.FC = () => {
   const [formSubmitted, setFormSubmitted] = useState<boolean>(false);
   const [mapUrl, setMapUrl] = useState<string>("");
   const [errorMessage, setErrorMessage] = useState<string>("");
-  const [fotoEntrada, setFotoEntrada] = useState<File | null>(null); // Estado para armazenar o arquivo de imagem
-  const [fotoPreview, setFotoPreview] = useState<string>(""); // Estado para armazenar a URL da imagem
+  const [fotoEntrada, setFotoEntrada] = useState<File | null>(null); 
+  const [fotoPreview, setFotoPreview] = useState<string>(""); 
   const navigate = useNavigate();
   const auth = getAuth();
   const userId = auth.currentUser?.uid;
@@ -33,9 +33,9 @@ export const Add: React.FC = () => {
       setFotoEntrada(file);
       const reader = new FileReader();
       reader.onloadend = () => {
-        setFotoPreview(reader.result as string); // Atualiza a URL da imagem para visualização
+        setFotoPreview(reader.result as string); 
       };
-      reader.readAsDataURL(file); // Converte o arquivo em URL para visualização
+      reader.readAsDataURL(file); 
     }
   };
 
@@ -95,7 +95,7 @@ export const Add: React.FC = () => {
         numero,
         site,
         horario,
-        fotoEntrada: fotoPreview, // Adiciona a URL da imagem
+        fotoEntrada: fotoPreview, 
         createdBy: userId,
         createdByName: nome,
         createdAt: new Date().toISOString(),
