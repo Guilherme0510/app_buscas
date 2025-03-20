@@ -6,5 +6,5 @@
   height: 100vh; /* Altura total da tela */
   object-fit: cover; /* Faz o vídeo cobrir toda a área sem distorcer */
   z-index: -2; /* Garante que o vídeo fique atrás dos outros elementos */
-  /* filter: brightness(0.5); */
+  filter: brightness(0.5);
 }

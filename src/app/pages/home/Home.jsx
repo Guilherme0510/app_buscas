@@ -1,5 +1,5 @@
-import { Banner, Search, Box } from "./components";
 import BackgroundImage from "./backgroundImage/backgroundImage";
+import { Banner, Box, Search } from "./components/index";
 
 
 export const Home = () => { 
@@ -10,7 +10,6 @@ export const Home = () => {
             <Banner />
             <Search />
             <Box />
-            
         </div>
     )
 }

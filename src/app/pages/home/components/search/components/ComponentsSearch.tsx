@@ -28,8 +28,8 @@ export const ComponentsSearch: React.FC = () => {
           animate={{ y: 0, opacity: 1 }} 
           transition={{ duration: 1 }}
         >
-          <h1>Encontre no centro de São Paulo</h1>
-          <p>Maior centro de compras na América Latina</p>
+          <h1>Encontre no Brasil</h1>
+          <p>Tudo o que você procura em um único lugar!</p>
         </motion.div>
       </Container>
       <motion.div 
@@ -38,7 +38,6 @@ export const ComponentsSearch: React.FC = () => {
         animate={{ opacity: 1 }} 
         transition={{ duration: 1, delay: 0.5 }}
       >
-        {/* <FontAwesomeIcon className="icon-location" icon={faLocationDot}/> */}
       </motion.div>
       <Row className="justify-content-center">
         <Col md={8} className="d-flex justify-center">
@@ -49,14 +48,6 @@ export const ComponentsSearch: React.FC = () => {
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder="O que Procura?"
-              />
-            </Form.Group>
-            <Form.Group controlId="search2" className="search-input">
-              <Form.Control
-                type="text"
-                value={locationQuery}
-                onChange={(e) => setLocationQuery(e.target.value)}
-                placeholder="Em qual localização?"
               />
             </Form.Group>
             <Button variant="primary" type="submit" className="search-button">

@@ -13,8 +13,6 @@ interface SearchBarProps {
 
 export const SearchBar: React.FC<SearchBarProps> = ({ searchTerm, selectedOperator, onSearchChange, onSortChange, onOperatorChange }) => {
   const auth = getAuth();
-  const userId = auth.currentUser?.uid;
-  const isAdmin = (userId === 'QtWNWEPXcTMUPrQQrzYj1JjWJC73'); 
 
   return (
     <div className="search-bar-container">
@@ -22,20 +20,6 @@ export const SearchBar: React.FC<SearchBarProps> = ({ searchTerm, selectedOperat
         <h1>Lista de Clientes</h1>
       </div>
       <div className="pesquisa">
-        {isAdmin && (
-          <select
-            value={selectedOperator}
-            onChange={onOperatorChange}
-            className="form-select select-operador"
-          >
-            <option value="">Todos</option>
-            <option value="Camila">Camila</option>
-            <option value="Eliane">Eliane</option>
-            <option value="Joyce">Joyce</option>
-            <option value="Luana">Luana</option>
-            <option value="Luciana">Luciana</option>
-          </select>
-        )}
         <input
           type="text"
           placeholder="Pesquisar cliente..."

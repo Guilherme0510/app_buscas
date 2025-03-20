@@ -1,7 +1,5 @@
 /* Container da cidade e banner */
 .city {
-    height: 33vh;
-    background-color: #0056b3;
     border-radius: 20px;
     display: flex;
     flex-direction: column; /* Alinha o banner e o formulário em coluna */
@@ -14,7 +12,6 @@
 .banner-content {
     text-align: center;
     color: #ffffff;
-    margin-bottom: 50px;
 }
 
 /* Texto do banner */
@@ -50,7 +47,7 @@
 
 .search-input input {
     z-index: 999;
-    width: 300px; /* Ocupa toda a largura disponível dentro do .search-input */
+    width: 500px; /* Ocupa toda a largura disponível dentro do .search-input */
 }
 
 .search-button {
