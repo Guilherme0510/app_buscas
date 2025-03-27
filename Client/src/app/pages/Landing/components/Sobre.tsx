@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
-import { db } from "../../../firebaseConfig"; // Certifique-se de importar corretamente o Firestore
+import { db } from "../../../firebaseConfig";
 import { collection, addDoc } from "firebase/firestore";
 
 export const Sobre = () => {
@@ -13,6 +13,7 @@ export const Sobre = () => {
   const [descricao, setDescricao] = useState("");
   const [temRedesSociais, setTemRedesSociais] = useState(false);
   const [temPaginaGoogle, setTemPaginaGoogle] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   // Função para salvar os dados no Firestore
   const salvarInteressado = async () => {
@@ -29,7 +30,6 @@ export const Sobre = () => {
         temPaginaGoogle,
         timestamp: new Date(),
       });
-      alert("Dados salvos com sucesso!");
     } catch (error) {
       console.error("Erro ao salvar no Firebase:", error);
       alert("Erro ao salvar os dados.");
@@ -39,7 +39,7 @@ export const Sobre = () => {
   // Função para enviar a mensagem
   const Msg = async () => {
     try {
-      const response = await axios.post("http://localhost:5000/api/enviar-texto", {
+      const response = await axios.post("https://app-buscas-backend.vercel.app/api/enviar-texto", {
         phone: `55${telefone.replace(/\D/g, "")}`,
         message: `Olá, ${nome},
 Sou o Felipe da G Maps Contact Center e gostaria de apresentar uma solução eficaz para aumentar a presença online do seu negócio: Criação e otimização de perfis no Google Maps.
@@ -48,14 +48,14 @@ Sou o Felipe da G Maps Contact Center e gostaria de apresentar uma solução efi
 ✅ Inserção de fotos, vídeos e informações estratégicas
 ✅ Melhoria no ranqueamento para maior visibilidade
 ✅ Estratégias para receber mais avaliações positivas
-Aguardamos seu retorno.
+*DIGITE "EU QUERO", PARA SABER MAIS*.
 Atenciosamente,
 G MAPS CONTACT CENTER`,
       });
 
       if (response.data.success) {
-        alert("Mensagem enviada com sucesso!");
         salvarInteressado(); // Salvar no Firebase após o envio da mensagem
+        setShowModal(true); // Exibir o modal de sucesso
       } else {
         alert("Falha ao enviar a mensagem.");
       }
@@ -63,6 +63,20 @@ G MAPS CONTACT CENTER`,
       console.error("Erro ao enviar mensagem:", error);
       alert("Ocorreu um erro ao enviar a mensagem.");
     }
+  };
+
+  // Função para fechar o modal e limpar os inputs
+  const closeModal = () => {
+    setShowModal(false);
+    setNome("");
+    setEmpresa("");
+    setEmail("");
+    setTelefone("");
+    setCidade("");
+    setEstado("");
+    setDescricao("");
+    setTemRedesSociais(false);
+    setTemPaginaGoogle(false);
   };
 
   return (
@@ -145,6 +159,26 @@ G MAPS CONTACT CENTER`,
           </div>
         </div>
       </div>
+
+      {showModal && (
+        <div className="modal fade show d-block" tabIndex="-1">
+          <div className="modal-dialog modal-dialog-centered">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title">Dados Recebidos</h5>
+                <button type="button" className="btn-close" onClick={closeModal}></button>
+              </div>
+              <div className="modal-body">
+                <p>Obrigado pela interação. O contato será solicitado pelo WhatsApp em alguns instantes!</p>
+              </div>
+              <div className="modal-footer">
+                <button type="button" className="btn btn-success" onClick={closeModal}>OK</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
+
   );
 };

@@ -7,13 +7,12 @@ const CustomNavbar: React.FC = () => {
     <nav className="navbar navbar-expand-lg custom-navbar fixed-top">
       <div className="container">
         <Link to="/" className="navbar-brand brand text-light">
-          {/* <img
-            src={require("../../../assets/images/logo.jpg")}
+          <img
+            src={require("../assets/images/logo.jpg")}
             alt="Logo"
-            height={50}
-            width={70}
-          /> */}
-          G Maps
+            width={40}
+          />
+          {/* G Maps */}
         </Link>
 
         <button

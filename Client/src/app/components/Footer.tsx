@@ -27,9 +27,7 @@ export const Footer = () => {
               </ul>
             </div>
             <div className="col-md-2 mb-4">
-              <h4 className="text-purple">Contato</h4>
-              <p>Jl. Medan Mendeka No. 35</p>
-              <p>Jakarta Sekatan</p>
+              <h4 className="text-purple">Contatos</h4>
               <p>0800 580 2766</p>
               <p>+55 11 4200-6110</p>
             </div>
